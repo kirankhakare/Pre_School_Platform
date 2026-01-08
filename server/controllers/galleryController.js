@@ -1,92 +1,85 @@
-import { useState } from "react";
-import { Upload, Trash2 } from "lucide-react";
+import Gallery from "../models/Gallery.js";
 
-function GalleryManagement() {
 
-  const [photos, setPhotos] = useState([]);
+// Get All Photos
+export const getPhotos = async (req, res) => {
+  try {
 
-  const handleUpload = (e) => {
+    const photos = await Gallery.find().sort({ createdAt: -1 });
 
-    const files = Array.from(e.target.files);
+    res.status(200).json({
+      success: true,
+      data: photos
+    });
 
-    const imageURLs = files.map((file) => ({
-      id: Date.now() + Math.random(),
-      url: URL.createObjectURL(file)
-    }));
+  } catch (error) {
 
-    setPhotos([...photos, ...imageURLs]);
-  };
+    res.status(500).json({
+      success: false,
+      message: "Error fetching photos",
+      error: error.message
+    });
 
-  const deletePhoto = (id) => {
-    const updated = photos.filter((p) => p.id !== id);
-    setPhotos(updated);
-  };
+  }
+};
 
-  return (
 
-    <div className="p-6">
 
-      <h1 className="text-2xl font-bold text-sky-900 mb-6">
-        Gallery Management
-      </h1>
+// Upload Photo
+export const uploadPhoto = async (req, res) => {
 
-      {/* Upload Section */}
+  try {
 
-      <div className="bg-white shadow rounded-xl p-4 mb-6">
+    const { imageUrl } = req.body;
 
-        <label className="flex items-center gap-2 bg-sky-700 text-white px-4 py-2 rounded w-fit cursor-pointer">
-          <Upload size={18} />
-          Upload Photos
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={handleUpload}
-            className="hidden"
-          />
-        </label>
+    const photo = new Gallery({
+      imageUrl
+    });
 
-      </div>
+    const savedPhoto = await photo.save();
 
-      {/* Gallery Grid */}
+    res.status(201).json({
+      success: true,
+      message: "Photo uploaded successfully",
+      data: savedPhoto
+    });
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+  } catch (error) {
 
-        {photos.length === 0 && (
-          <p className="text-gray-500">
-            No photos uploaded yet
-          </p>
-        )}
+    res.status(500).json({
+      success: false,
+      message: "Error uploading photo",
+      error: error.message
+    });
 
-        {photos.map((photo) => (
+  }
 
-          <div
-            key={photo.id}
-            className="relative bg-white rounded-lg shadow overflow-hidden"
-          >
+};
 
-            <img
-              src={photo.url}
-              alt="gallery"
-              className="w-full h-40 object-cover"
-            />
 
-            <button
-              onClick={() => deletePhoto(photo.id)}
-              className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded"
-            >
-              <Trash2 size={16} />
-            </button>
 
-          </div>
+// Delete Photo
+export const deletePhoto = async (req, res) => {
 
-        ))}
+  try {
 
-      </div>
+    const { id } = req.params;
 
-    </div>
+    await Gallery.findByIdAndDelete(id);
 
-  );
-}
+    res.status(200).json({
+      success: true,
+      message: "Photo deleted successfully"
+    });
 
-export default GalleryManagement;
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: "Error deleting photo",
+      error: error.message
+    });
+
+  }
+
+};
