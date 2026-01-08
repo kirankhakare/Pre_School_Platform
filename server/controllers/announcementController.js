@@ -1,8 +1,9 @@
 import Announcement from "../models/Announcement.js";
 
 
-// Create Announcement
+// CREATE
 export const createAnnouncement = async (req, res) => {
+
   try {
 
     const { title, message, target } = req.body;
@@ -13,34 +14,36 @@ export const createAnnouncement = async (req, res) => {
       target
     });
 
-    const savedAnnouncement = await newAnnouncement.save();
+    const saved = await newAnnouncement.save();
 
-    res.status(201).json({
+    res.json({
       success: true,
-      message: "Announcement created successfully",
-      data: savedAnnouncement
+      data: saved
     });
 
   } catch (error) {
 
+    console.log(error);
+
     res.status(500).json({
       success: false,
-      message: "Error creating announcement",
-      error: error.message
+      message: error.message
     });
 
   }
+
 };
 
 
 
-// Get All Announcements
+// GET ALL
 export const getAnnouncements = async (req, res) => {
+
   try {
 
     const announcements = await Announcement.find().sort({ createdAt: -1 });
 
-    res.status(200).json({
+    res.json({
       success: true,
       data: announcements
     });
@@ -48,36 +51,32 @@ export const getAnnouncements = async (req, res) => {
   } catch (error) {
 
     res.status(500).json({
-      success: false,
-      message: "Error fetching announcements",
-      error: error.message
+      success: false
     });
 
   }
+
 };
 
 
 
-// Delete Announcement
+// DELETE
 export const deleteAnnouncement = async (req, res) => {
+
   try {
 
-    const { id } = req.params;
+    await Announcement.findByIdAndDelete(req.params.id);
 
-    await Announcement.findByIdAndDelete(id);
-
-    res.status(200).json({
-      success: true,
-      message: "Announcement deleted successfully"
+    res.json({
+      success: true
     });
 
   } catch (error) {
 
     res.status(500).json({
-      success: false,
-      message: "Error deleting announcement",
-      error: error.message
+      success: false
     });
 
   }
+
 };
