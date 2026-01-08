@@ -2,7 +2,10 @@ import mongoose from "mongoose";
 
 const gallerySchema = new mongoose.Schema(
   {
-    imageUrl: String
+    imageUrl: {
+      type: String,
+      required: true
+    }
   },
   { timestamps: true }
 );
