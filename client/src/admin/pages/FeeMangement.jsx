@@ -1,17 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Plus, CheckCircle, XCircle, FileText, Trash2 } from "lucide-react";
 
 function FeeManagement() {
 
-  const [fees, setFees] = useState([
-    {
-      id: 1,
-      student: "Aarav Sharma",
-      className: "Nursery",
-      amount: 5000,
-      status: "Unpaid"
-    }
-  ]);
+  const API = "http://localhost:5000/api/fees";
+
+  const [fees, setFees] = useState([]);
 
   const [form, setForm] = useState({
     student: "",
@@ -19,49 +14,107 @@ function FeeManagement() {
     amount: ""
   });
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+
+  // Fetch Fees
+  const fetchFees = async () => {
+    try {
+
+      const res = await axios.get(`${API}/all`);
+
+      if (res.data.success) {
+        setFees(res.data.data);
+      }
+
+    } catch (error) {
+      console.log("Fetch Error:", error);
+    }
   };
 
-  // Add Fee Structure
-  const addFee = () => {
 
-    if (!form.student || !form.amount) return;
+  useEffect(() => {
+    fetchFees();
+  }, []);
 
-    setFees([
-      ...fees,
-      {
-        id: Date.now(),
-        student: form.student,
-        className: form.className,
-        amount: form.amount,
-        status: "Unpaid"
-      }
-    ]);
 
+  // Handle Form Input
+  const handleChange = (e) => {
     setForm({
-      student: "",
-      className: "",
-      amount: ""
+      ...form,
+      [e.target.name]: e.target.value
     });
   };
 
-  // Mark Paid / Unpaid
-  const toggleStatus = (index) => {
-    const updated = [...fees];
-    updated[index].status =
-      updated[index].status === "Paid" ? "Unpaid" : "Paid";
-    setFees(updated);
+
+  // Add Fee
+  const addFee = async () => {
+
+    if (!form.student || !form.amount) {
+      alert("Please fill required fields");
+      return;
+    }
+
+    try {
+
+      const res = await axios.post(`${API}/create`, form);
+
+      if (res.data.success) {
+        fetchFees();
+      }
+
+      setForm({
+        student: "",
+        className: "",
+        amount: ""
+      });
+
+    } catch (error) {
+      console.log("Create Error:", error);
+    }
+
   };
 
-  // Delete Fee
-  const deleteFee = (index) => {
-    const updated = fees.filter((_, i) => i !== index);
-    setFees(updated);
+
+  // Toggle Paid / Unpaid
+  const toggleStatus = async (id) => {
+
+    try {
+
+      const res = await axios.put(`${API}/toggle/${id}`);
+
+      if (res.data.success) {
+        fetchFees();
+      }
+
+    } catch (error) {
+      console.log("Toggle Error:", error);
+    }
+
   };
+
+
+  // Delete Fee
+  const deleteFee = async (id) => {
+
+    if (!window.confirm("Delete this fee record?")) return;
+
+    try {
+
+      const res = await axios.delete(`${API}/delete/${id}`);
+
+      if (res.data.success) {
+        fetchFees();
+      }
+
+    } catch (error) {
+      console.log("Delete Error:", error);
+    }
+
+  };
+
 
   // Generate Receipt
   const generateReceipt = (fee) => {
+
     alert(`
 Receipt Generated
 
@@ -70,7 +123,9 @@ Class: ${fee.className}
 Amount: ₹${fee.amount}
 Status: ${fee.status}
 `);
+
   };
+
 
   return (
 
@@ -80,7 +135,8 @@ Status: ${fee.status}
         Fee Management
       </h1>
 
-      {/* Fee Form */}
+
+      {/* FORM */}
 
       <div className="bg-white shadow rounded-xl p-4 mb-6 flex gap-3 flex-wrap">
 
@@ -125,13 +181,16 @@ Status: ${fee.status}
 
       </div>
 
-      {/* Fee Table */}
+
+
+      {/* TABLE */}
 
       <div className="bg-white shadow rounded-xl p-4">
 
         <table className="w-full border">
 
           <thead className="bg-sky-100">
+
             <tr>
               <th className="p-3">Student</th>
               <th className="p-3">Class</th>
@@ -139,13 +198,26 @@ Status: ${fee.status}
               <th className="p-3">Status</th>
               <th className="p-3">Actions</th>
             </tr>
+
           </thead>
+
 
           <tbody>
 
-            {fees.map((f, index) => (
+            {fees.length === 0 && (
 
-              <tr key={f.id} className="border-t text-center">
+              <tr>
+                <td colSpan="5" className="text-center p-4">
+                  No fee records
+                </td>
+              </tr>
+
+            )}
+
+
+            {fees.map((f) => (
+
+              <tr key={f._id} className="border-t text-center">
 
                 <td className="p-3">{f.student}</td>
                 <td>{f.className}</td>
@@ -166,7 +238,7 @@ Status: ${fee.status}
                 <td className="flex justify-center gap-4 p-3">
 
                   <button
-                    onClick={() => toggleStatus(index)}
+                    onClick={() => toggleStatus(f._id)}
                     className="text-green-600"
                   >
                     {f.status === "Paid" ? (
@@ -184,7 +256,7 @@ Status: ${fee.status}
                   </button>
 
                   <button
-                    onClick={() => deleteFee(index)}
+                    onClick={() => deleteFee(f._id)}
                     className="text-red-600"
                   >
                     <Trash2 size={18} />
