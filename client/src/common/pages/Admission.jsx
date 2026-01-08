@@ -1,14 +1,12 @@
-import PublicNavbar from "../components/PublicNavbar";
-import Footer from "../components/Footer";
-
 import HeroSection from "../components/admission/hero";
 import FeeStructureSection from "../components/admission/feeSection";
+import FeeInstallment from "../components/admission/FeeInstallment";
 import NurserySection from "../components/admission/nurserySection";
 import AdmissionProcessSection from "../components/admission/admissionSection";
 import DocumentsSection from "../components/admission/documentsSection";
 import FAQSection from "../components/admission/faqSection";
-import ContactSection from "../components/admission/applicationSection";
-import CTASection from "../components/admission/callSection";
+
+import CTASection from "../components/admission/CTASection";
 
 function Admission() {
   return (
@@ -21,6 +19,7 @@ function Admission() {
 
         <FeeStructureSection />
 
+        <FeeInstallment/>
         <NurserySection />
 
         <AdmissionProcessSection />
@@ -28,8 +27,6 @@ function Admission() {
         <DocumentsSection />
 
         <FAQSection />
-
-        <ContactSection />
 
         <CTASection />
 

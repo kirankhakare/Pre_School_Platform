@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
@@ -7,47 +6,27 @@ function ContactInfoCardsSection() {
   const contactCards = [
     {
       title: "Call Us",
-      value: "+91 98765 43210",
+      value: "+91 8767192113",
       subtitle: "Mon–Sat during school hours",
-      icon: Phone,
-      emoji: "📞",
-      bg: "from-pink-50 to-orange-50",
-      iconBg: "bg-pink-100",
-      iconColor: "text-pink-500",
-      border: "border-pink-100"
+      icon: Phone
     },
     {
       title: "Email Us",
-      value: "info@mjmschool.com",
+      value: "octawisdom@gmail.com",
       subtitle: "We reply within 24 hours",
-      icon: Mail,
-      emoji: "📧",
-      bg: "from-blue-50 to-cyan-50",
-      iconBg: "bg-blue-100",
-      iconColor: "text-blue-500",
-      border: "border-blue-100"
+      icon: Mail
     },
     {
       title: "Visit Us",
-      value: "Nagpur, Maharashtra",
+      value: "Pramanda, Lane 7, Yashoda Nagar No.2, Amravati, 444606",
       subtitle: "Come see our campus",
-      icon: MapPin,
-      emoji: "📍",
-      bg: "from-green-50 to-emerald-50",
-      iconBg: "bg-green-100",
-      iconColor: "text-green-500",
-      border: "border-green-100"
+      icon: MapPin
     },
     {
       title: "WhatsApp",
-      value: "+91 98765 43210",
+      value: "+91 8767192113",
       subtitle: "Quick support & updates",
-      icon: MessageCircle,
-      emoji: "💬",
-      bg: "from-purple-50 to-indigo-50",
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-500",
-      border: "border-purple-100"
+      icon: MessageCircle
     }
   ];
 
@@ -56,48 +35,48 @@ function ContactInfoCardsSection() {
 
       <div className="max-w-7xl mx-auto">
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
           {contactCards.map((card, index) => {
+
             const Icon = card.icon;
 
             return (
               <motion.div
                 key={index}
-                className={`bg-gradient-to-br ${card.bg} p-6 rounded-3xl shadow-lg border-2 ${card.border}`}
-                initial={{ opacity: 0, y: 40 }}
+                className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
               >
 
-                <div className="flex items-center gap-3 mb-4">
+                {/* Icon */}
+                <div className="w-12 h-12 bg-[#FFF3E6] flex items-center justify-center rounded-xl mb-4">
 
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${card.iconBg}`}>
-                    <Icon size={24} className={card.iconColor} />
-                  </div>
-
-                  <span className="text-2xl">
-                    {card.emoji}
-                  </span>
+                  <Icon size={24} className="text-[#E87D1E]" />
 
                 </div>
 
-                <h3 className="text-lg font-extrabold text-sky-900 mb-1">
+                {/* Title */}
+                <h3 className="text-lg font-bold text-[#2F4C92] mb-1">
                   {card.title}
                 </h3>
 
-                <p className="text-sky-800 font-bold mb-1">
+                {/* Value */}
+                <p className="font-semibold text-gray-800 mb-1 break-words">
                   {card.value}
                 </p>
 
-                <p className="text-sm text-sky-700">
+                {/* Subtitle */}
+                <p className="text-sm text-gray-500">
                   {card.subtitle}
                 </p>
 
               </motion.div>
             );
+
           })}
 
         </div>
@@ -109,4 +88,3 @@ function ContactInfoCardsSection() {
 }
 
 export default ContactInfoCardsSection;
-

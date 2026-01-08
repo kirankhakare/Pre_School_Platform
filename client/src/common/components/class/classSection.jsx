@@ -4,224 +4,227 @@ import {
   Paintbrush,
   Music,
   Gamepad2,
-  Apple,
-  PenTool,
   Scissors,
   Globe,
-  Backpack,
   Users,
   Star
 } from "lucide-react";
 
 function ClassesSection() {
 
-  /* KG1 Curriculum */
-  const kg1Curriculum = [
+  /* Nursery */
+  const nurseryCurriculum = [
     {
-      icon: <BookOpen size={28} />,
-      subject: "Language Arts",
-      description: "Alphabet recognition, phonics, simple words",
+      icon: <Paintbrush size={20} />,
+      subject: "Creative Activities",
       color: "bg-pink-100 text-pink-600"
     },
     {
-      icon: <Paintbrush size={28} />,
-      subject: "Creative Arts",
-      description: "Coloring, finger painting, craft activities",
-      color: "bg-orange-100 text-orange-600"
-    },
-    {
-      icon: <Music size={28} />,
-      subject: "Music & Movement",
-      description: "Action songs, rhymes, dance",
+      icon: <Music size={20} />,
+      subject: "Rhymes & Music",
       color: "bg-purple-100 text-purple-600"
     },
     {
-      icon: <Gamepad2 size={28} />,
-      subject: "Play-based Learning",
-      description: "Educational games, puzzles, blocks",
+      icon: <Gamepad2 size={20} />,
+      subject: "Play-Based Learning",
       color: "bg-green-100 text-green-600"
     },
     {
-      icon: <Apple size={28} />,
-      subject: "Healthy Habits",
-      description: "Personal hygiene, fruits, good manners",
-      color: "bg-red-100 text-red-600"
-    },
-    {
-      icon: <PenTool size={28} />,
-      subject: "Pre-Writing",
-      description: "Tracing, patterns, grip practice",
-      color: "bg-blue-100 text-blue-600"
+      icon: <BookOpen size={20} />,
+      subject: "Story Time",
+      color: "bg-orange-100 text-orange-600"
     },
   ];
 
-  /* KG2 Curriculum */
-  const kg2Curriculum = [
+  /* JR KG */
+  const kg1Curriculum = [
     {
-      icon: <BookOpen size={28} />,
+      icon: <BookOpen size={20} />,
       subject: "Language Development",
-      description: "Reading readiness, sight words, storytelling",
       color: "bg-pink-100 text-pink-600"
     },
     {
-      icon: <Scissors size={28} />,
-      subject: "Fine Motor Skills",
-      description: "Cutting, pasting, clay modeling",
+      icon: <Paintbrush size={20} />,
+      subject: "Art & Creativity",
       color: "bg-orange-100 text-orange-600"
     },
     {
-      icon: <Music size={28} />,
-      subject: "Rhythmic Activities",
-      description: "Musical instruments, rhythm, group songs",
+      icon: <Music size={20} />,
+      subject: "Music & Rhythm",
       color: "bg-purple-100 text-purple-600"
     },
     {
-      icon: <Globe size={28} />,
-      subject: "Environmental Studies",
-      description: "Seasons, animals, community helpers",
+      icon: <Gamepad2 size={20} />,
+      subject: "Interactive Learning",
       color: "bg-green-100 text-green-600"
     },
+  ];
+
+  /* SR KG */
+  const kg2Curriculum = [
     {
-      icon: <PenTool size={28} />,
-      subject: "Pre-Math Skills",
-      description: "Numbers, shapes, patterns, sorting",
-      color: "bg-red-100 text-red-600"
+      icon: <BookOpen size={20} />,
+      subject: "Early Reading Skills",
+      color: "bg-pink-100 text-pink-600"
     },
     {
-      icon: <Backpack size={28} />,
-      subject: "Social Skills",
-      description: "Sharing, teamwork, classroom etiquette",
-      color: "bg-blue-100 text-blue-600"
+      icon: <Scissors size={20} />,
+      subject: "Fine Motor Skills",
+      color: "bg-orange-100 text-orange-600"
+    },
+    {
+      icon: <Music size={20} />,
+      subject: "Music & Movement",
+      color: "bg-purple-100 text-purple-600"
+    },
+    {
+      icon: <Globe size={20} />,
+      subject: "Environmental Studies",
+      color: "bg-green-100 text-green-600"
     },
   ];
 
   return (
-    <section className="relative px-6 py-20 bg-white">
+    <section className="px-6 py-20 bg-white">
 
       <div className="max-w-7xl mx-auto">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Section Title */}
+        <div className="text-center mb-14">
 
-          {/* JR KG CARD */}
+          <h2 className="text-4xl font-extrabold text-[#2F4C92] mb-4">
+            Our Learning Programs
+          </h2>
+
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            We offer age-appropriate programs designed to nurture creativity,
+            curiosity, and confidence through engaging activities and
+            structured learning experiences.
+          </p>
+
+        </div>
+
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+          {/* Nursery */}
           <motion.div
-            className="bg-gradient-to-br from-pink-50 to-yellow-50 rounded-[2rem] p-8 shadow-xl border-4 relative overflow-hidden group"
-            whileHover={{ scale: 1.02 }}
+            className="bg-white rounded-2xl p-7 shadow-lg border hover:shadow-xl transition"
+            whileHover={{ y: -5 }}
           >
 
-            <div className="absolute -right-10 -top-10 w-40 h-40 bg-pink-200 rounded-full opacity-30 group-hover:scale-150 transition-transform"></div>
-            <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-yellow-200 rounded-full opacity-30 group-hover:scale-150 transition-transform"></div>
+            <h3 className="text-2xl font-bold text-[#2F4C92] mb-2">
+              Nursery
+            </h3>
 
-            <div className="relative z-10">
+            <p className="text-gray-600 mb-4">
+              Age Group: 3 – 4 Years
+            </p>
 
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-5xl font-black text-sky-900">JR.KG</h2>
-                <span className="text-7xl">🐼</span>
-              </div>
+            <p className="text-gray-600 mb-6">
+              A nurturing environment where children begin their learning
+              journey through play, creativity, music, and social interaction.
+            </p>
 
-              <div className="bg-white/80 rounded-3xl p-4 mb-6 border-2 border-pink-200">
-                <p className="text-lg text-sky-800 font-bold flex items-center gap-2">
-                  <Users className="text-pink-500" />
-                  Age Group: 3.5 - 4.5 Years
-                </p>
-              </div>
+            <div className="grid grid-cols-2 gap-3 mb-6">
 
-              {/* Learning Focus */}
-              <div className="space-y-4 mb-8">
-
-                <h3 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-                  <Star className="fill-yellow-400 text-yellow-400" />
-                  Learning Focus
-                </h3>
-
-                <div className="grid grid-cols-2 gap-3">
-
-                  {kg1Curriculum.slice(0,4).map((item, i) => (
-
-                    <motion.div
-                      key={i}
-                      className={`${item.color} p-3 rounded-xl flex items-center gap-2 font-bold`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {item.icon}
-                      <span>{item.subject}</span>
-                    </motion.div>
-
-                  ))}
-
+              {nurseryCurriculum.map((item, i) => (
+                <div
+                  key={i}
+                  className={`${item.color} text-sm p-3 rounded-lg flex items-center gap-2 font-medium`}
+                >
+                  {item.icon}
+                  {item.subject}
                 </div>
-
-              </div>
-
-              <motion.button
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl py-4 rounded-3xl shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                Explore KG 1 Program 🐼
-              </motion.button>
+              ))}
 
             </div>
+
+            <button className="w-full bg-[#E87D1E] hover:bg-[#c96b17] text-white font-semibold py-3 rounded-lg transition">
+              View Nursery Program
+            </button>
 
           </motion.div>
 
 
-          {/* SR KG CARD */}
+          {/* Jr KG */}
           <motion.div
-            className="bg-gradient-to-br from-blue-50 to-green-50 rounded-[2rem] p-8 shadow-xl border-4 relative overflow-hidden group"
-            whileHover={{ scale: 1.02 }}
+            className="bg-white rounded-2xl p-7 shadow-lg border hover:shadow-xl transition"
+            whileHover={{ y: -5 }}
           >
 
-            <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-200 rounded-full opacity-30 group-hover:scale-150 transition-transform"></div>
-            <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-green-200 rounded-full opacity-30 group-hover:scale-150 transition-transform"></div>
+            <h3 className="text-2xl font-bold text-[#2F4C92] mb-2">
+              Junior Kindergarten
+            </h3>
 
-            <div className="relative z-10">
+            <p className="text-gray-600 mb-4">
+              Age Group: 4 – 5 Years
+            </p>
 
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-5xl font-black text-sky-900">SR.KG</h2>
-                <span className="text-7xl">🐨</span>
-              </div>
+            <p className="text-gray-600 mb-6">
+              Focused on developing language skills, creativity, and
+              confidence through engaging classroom activities and guided learning.
+            </p>
 
-              <div className="bg-white/80 rounded-3xl p-4 mb-6 border-2 border-blue-200">
-                <p className="text-lg text-sky-800 font-bold flex items-center gap-2">
-                  <Users className="text-blue-500" />
-                  Age Group: 4.5 - 5.5 Years
-                </p>
-              </div>
+            <div className="grid grid-cols-2 gap-3 mb-6">
 
-              {/* Learning Focus */}
-              <div className="space-y-4 mb-8">
-
-                <h3 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-                  <Star className="fill-yellow-400 text-yellow-400" />
-                  Learning Focus
-                </h3>
-
-                <div className="grid grid-cols-2 gap-3">
-
-                  {kg2Curriculum.slice(0,4).map((item, i) => (
-
-                    <motion.div
-                      key={i}
-                      className={`${item.color} p-3 rounded-xl flex items-center gap-2 font-bold`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {item.icon}
-                      <span>{item.subject}</span>
-                    </motion.div>
-
-                  ))}
-
+              {kg1Curriculum.map((item, i) => (
+                <div
+                  key={i}
+                  className={`${item.color} text-sm p-3 rounded-lg flex items-center gap-2 font-medium`}
+                >
+                  {item.icon}
+                  {item.subject}
                 </div>
-
-              </div>
-
-              <motion.button
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl py-4 rounded-3xl shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                Explore KG 2 Program 🐨
-              </motion.button>
+              ))}
 
             </div>
+
+            <button className="w-full bg-[#2F4C92] hover:bg-[#1d3570] text-white font-semibold py-3 rounded-lg transition">
+              View Jr KG Program
+            </button>
+
+          </motion.div>
+
+
+          {/* Sr KG */}
+          <motion.div
+            className="bg-white rounded-2xl p-7 shadow-lg border hover:shadow-xl transition"
+            whileHover={{ y: -5 }}
+          >
+
+            <h3 className="text-2xl font-bold text-[#2F4C92] mb-2">
+              Senior Kindergarten
+            </h3>
+
+            <p className="text-gray-600 mb-4">
+              Age Group: 5 – 6 Years
+            </p>
+
+            <p className="text-gray-600 mb-6">
+              Preparing children for primary school with early reading,
+              logical thinking, environmental awareness, and social skills.
+            </p>
+
+            <div className="grid grid-cols-2 gap-3 mb-6">
+
+              {kg2Curriculum.map((item, i) => (
+                <div
+                  key={i}
+                  className={`${item.color} text-sm p-3 rounded-lg flex items-center gap-2 font-medium`}
+                >
+                  {item.icon}
+                  {item.subject}
+                </div>
+              ))}
+
+            </div>
+
+            <button className="w-full bg-[#E87D1E] hover:bg-[#c96b17] text-white font-semibold py-3 rounded-lg transition">
+              View Sr KG Program
+            </button>
 
           </motion.div>
 

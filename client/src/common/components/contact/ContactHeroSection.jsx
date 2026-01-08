@@ -1,71 +1,64 @@
-
 import { motion } from "framer-motion";
-import contactImg from '../../../assets/contact.png';
+import contactImg from "../../../assets/contact.png";
+
 function ContactHero() {
   return (
-    <section className="relative px-6 pt-20 pb-20 overflow-hidden">
+    <section className="relative w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-center px-6 py-20 overflow-hidden">
 
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
           src={contactImg}
-          alt="Preschool"
+          alt="Contact Background"
           className="w-full h-full object-cover"
         />
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
       </div>
 
-      {/* Floating Decorative Elements */}
-      <div className="absolute inset-0 pointer-events-none z-10">
+      {/* Content */}
+      <div className="relative z-20 max-w-5xl mx-auto text-center text-white">
 
-       
-
-      </div>
-
-      {/* Hero Content */}
-      <div className="max-w-7xl mx-auto relative z-20">
-
+        {/* Badge */}
         <motion.div
-          className="text-center mb-12 text-white"
-          initial={{ opacity: 0, y: -30 }}
+          className="inline-block bg-[#E87D1E] text-white px-6 py-2 rounded-full font-semibold mb-6 shadow-md"
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
         >
-
-          {/* Badge */}
-          <div className="inline-block bg-black/30 text-white px-8 py-3 rounded-full text-2xl font-bold  mb-6  border-white">
-            📞 Get in Touch
-          </div>
-
-          {/* Heading */}
-          <h1 className="text-5xl lg:text-6xl font-bold text-white/80 mb-4 leading-tight">
-            We'd Love to
-           
-              Hear From You
-            
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-xl max-w-3xl mx-auto font-medium bg-black/30  p-4 rounded-3xl shadow-sm">
-            Have questions about admissions, curriculum, or want to schedule a visit?
-            We're here to help!
-          </p>
-
+          📞 Get in Touch
         </motion.div>
 
-        {/* Quick Contact Chips */}
-        <div className="flex justify-center gap-4 flex-wrap">
+        {/* Heading */}
+        <motion.h1
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          We'd Love to Hear From You
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-200 mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          Have questions about admissions, curriculum, or want to schedule a
+          school visit? Our team is happy to assist you.
+        </motion.p>
+
+        {/* Quick Contact Options */}
+        <div className="flex flex-wrap justify-center gap-4">
 
           {["📞 Call", "💬 Chat", "📧 Email", "👋 Visit"].map((item, i) => (
             <motion.div
               key={i}
-              className="bg-white px-6 py-3 rounded-full shadow-md border-2 border-pink-200 font-bold text-sky-900 cursor-pointer"
+              className="bg-white text-[#2F4C92] px-6 py-3 rounded-full shadow-md font-semibold cursor-pointer hover:bg-[#E87D1E] hover:text-white transition"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -6, scale: 1.06 }}
+              whileHover={{ scale: 1.05 }}
             >
               {item}
             </motion.div>
@@ -80,4 +73,3 @@ function ContactHero() {
 }
 
 export default ContactHero;
-

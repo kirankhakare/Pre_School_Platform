@@ -6,24 +6,35 @@ function AdmissionCTA() {
 
   return (
 
-    <section className="py-20 bg-blue-50 text-center">
+    <section className="py-20 bg-[#2F4C92] text-white text-center px-6">
 
-      <h2 className="text-4xl font-bold">
-        Enroll Your Child Today
-      </h2>
+      <div className="max-w-3xl mx-auto">
 
-      <p className="mt-4 text-gray-600">
-        Give your child the best start to their learning journey.
-      </p>
+        {/* Heading */}
+        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+          Enroll Your Child Today
+        </h2>
 
-      <button
-        onClick={() => navigate("/admission")}
-        className="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl"
-      >
-        Apply for Admission
-      </button>
+        {/* Subtitle */}
+        <p className="mt-6 text-lg text-gray-200">
+          Give your child the best start to their educational journey
+          with joyful learning, caring teachers, and a safe environment.
+        </p>
+
+        {/* Button */}
+        <button
+          onClick={() => navigate("/admission")}
+          className="mt-10 bg-[#E87D1E] hover:bg-[#cf6b14]
+          text-white px-8 py-3 rounded-full
+          font-semibold shadow-lg transition duration-300 hover:scale-105"
+        >
+          Apply for Admission →
+        </button>
+
+      </div>
 
     </section>
+
   );
 }
 

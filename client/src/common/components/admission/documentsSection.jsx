@@ -1,48 +1,42 @@
-
 import { motion } from "framer-motion";
 import { FileText, CalendarCheck, AlertCircle } from "lucide-react";
 
 function DocumentsSection() {
 
   const requiredDocuments = [
-    { name: "Child's Birth Certificate", icon: "📜", color: "bg-pink-50 text-pink-600" },
-    { name: "Passport Size Photos (4 copies)", icon: "📸", color: "bg-blue-50 text-blue-600" },
-    { name: "Parent's ID Proof", icon: "🆔", color: "bg-green-50 text-green-600" },
-    { name: "Address Proof", icon: "🏠", color: "bg-purple-50 text-purple-600" },
-    { name: "Medical History/Records", icon: "🏥", color: "bg-orange-50 text-orange-600" },
-    { name: "Previous School Records (if any)", icon: "📚", color: "bg-yellow-50 text-yellow-600" },
+    "Child's Birth Certificate",
+    "Passport Size Photos (2 copies)",
+    "Parent's ID Proof",
+    "Address Proof",
+    "Medical History / Records",
+    "Previous School Records (if any)",
   ];
 
   const importantDates = [
-    { event: "Admission Starts", date: "1st November 2024", icon: "📅", color: "text-green-600" },
-    { event: "Last Date to Apply", date: "15th March 2025", icon: "⏰", color: "text-red-600" },
-    { event: "Interaction Sessions", date: "20th - 30th March 2025", icon: "🤝", color: "text-blue-600" },
-    { event: "Results Announcement", date: "5th April 2025", icon: "📢", color: "text-purple-600" },
-    { event: "Fee Submission", date: "10th - 20th April 2025", icon: "💰", color: "text-orange-600" },
-    { event: "Academic Year Begins", date: "15th June 2025", icon: "🎓", color: "text-pink-600" },
+    { event: "Admission Starts", date: "21 March 2026" },
+    { event: "Academic Year Begins", date: "15 June 2026" },
   ];
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section className="py-20 px-6 bg-gray-50">
 
       <div className="max-w-7xl mx-auto">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-          {/* Required Documents */}
+          {/* Documents Section */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
           >
 
-            <h2 className="text-4xl font-extrabold text-sky-900 mb-4 flex items-center gap-3">
-              <FileText className="text-sky-500" size={40} />
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2F4C92] mb-4 flex items-center gap-3">
+              <FileText className="text-[#E87D1E]" size={36} />
               Required Documents
             </h2>
 
-            <p className="text-lg text-sky-700 font-medium mb-8">
-              Please keep these documents ready before applying
+            <p className="text-gray-600 mb-8">
+              Please keep these documents ready before applying.
             </p>
 
             <div className="space-y-4">
@@ -51,17 +45,18 @@ function DocumentsSection() {
 
                 <motion.div
                   key={i}
-                  className={`${doc.color} p-4 rounded-2xl flex items-center gap-4 border-2 border-white shadow-md`}
+                  className="bg-white p-4 rounded-xl shadow-sm border flex items-center gap-4"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ x: 10 }}
+                  transition={{ delay: i * 0.05 }}
                 >
 
-                  <span className="text-3xl">{doc.icon}</span>
-                  <span className="font-bold text-sky-900">
-                    {doc.name}
+                  <div className="w-10 h-10 bg-[#FFF3E6] flex items-center justify-center rounded-full font-bold text-[#E87D1E]">
+                    {i + 1}
+                  </div>
+
+                  <span className="font-medium text-gray-700">
+                    {doc}
                   </span>
 
                 </motion.div>
@@ -70,16 +65,19 @@ function DocumentsSection() {
 
             </div>
 
+            {/* Notice Box */}
             <motion.div
-              className="mt-8 bg-yellow-50 p-6 rounded-3xl border-2 border-yellow-200"
+              className="mt-8 bg-[#FFF3E6] p-6 rounded-2xl border border-[#E87D1E]"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
             >
 
-              <p className="text-sky-800 font-medium flex items-center gap-2">
-                <AlertCircle className="text-yellow-600" />
-                Submit self-attested copies of all documents
+              <p className="text-gray-700 flex items-center gap-2">
+
+                <AlertCircle className="text-[#E87D1E]" />
+
+                Submit self-attested copies of all documents.
+
               </p>
 
             </motion.div>
@@ -91,39 +89,37 @@ function DocumentsSection() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
           >
 
-            <h2 className="text-4xl font-extrabold text-sky-900 mb-4 flex items-center gap-3">
-              <CalendarCheck className="text-sky-500" size={40} />
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2F4C92] mb-4 flex items-center gap-3">
+
+              <CalendarCheck className="text-[#E87D1E]" size={36} />
+
               Important Dates
+
             </h2>
 
-            <p className="text-lg text-sky-700 font-medium mb-8">
-              Mark your calendar for these key dates
+            <p className="text-gray-600 mb-8">
+              Mark your calendar for these important events.
             </p>
 
-            <div className="bg-gradient-to-br from-blue-50 to-green-50 p-6 rounded-[3rem] border-4 border-white shadow-xl">
+            <div className="bg-white p-6 rounded-2xl shadow-md">
 
               {importantDates.map((date, i) => (
 
                 <motion.div
                   key={i}
-                  className="flex items-center justify-between py-3 border-b-2 border-dashed border-blue-200 last:border-0"
+                  className="flex items-center justify-between py-4 border-b last:border-0"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                 >
 
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{date.icon}</span>
-                    <span className="font-bold text-sky-900">
-                      {date.event}
-                    </span>
-                  </div>
+                  <span className="font-semibold text-[#2F4C92]">
+                    {date.event}
+                  </span>
 
-                  <span className={`font-extrabold ${date.color}`}>
+                  <span className="font-bold text-[#E87D1E]">
                     {date.date}
                   </span>
 
@@ -133,20 +129,19 @@ function DocumentsSection() {
 
             </div>
 
-            {/* Countdown Box */}
+            {/* Countdown Notice */}
             <motion.div
-              className="mt-8 bg-pink-50 p-6 rounded-3xl border-4 border-white text-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              className="mt-8 bg-[#2F4C92] text-white p-6 rounded-2xl text-center shadow-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
             >
 
-              <p className="text-lg text-sky-800 font-bold mb-2">
+              <p className="text-lg font-semibold mb-2">
                 Applications Closing Soon!
               </p>
 
-              <p className="text-4xl font-black text-sky-800">
-                15 Days Left
+              <p className="text-3xl font-bold text-[#FFD08A]">
+                Limited Seats Available
               </p>
 
             </motion.div>
@@ -162,4 +157,3 @@ function DocumentsSection() {
 }
 
 export default DocumentsSection;
-
