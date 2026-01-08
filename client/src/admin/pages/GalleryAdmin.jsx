@@ -1,26 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Upload, Trash2 } from "lucide-react";
+import axios from "axios";
 
 function GalleryManagement() {
 
   const [photos, setPhotos] = useState([]);
 
-  const handleUpload = (e) => {
+  const API = "http://localhost:5000/api/gallery";
+
+
+  // Fetch Photos
+  const fetchPhotos = async () => {
+    try {
+
+      const res = await axios.get(`${API}/all`);
+      setPhotos(res.data.data);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
+
+
+
+  // Upload Photos
+  const handleUpload = async (e) => {
 
     const files = Array.from(e.target.files);
 
-    const imageURLs = files.map((file) => ({
-      id: Date.now() + Math.random(),
-      url: URL.createObjectURL(file)
-    }));
+    try {
 
-    setPhotos([...photos, ...imageURLs]);
+      for (let file of files) {
+
+        const imageUrl = URL.createObjectURL(file);
+
+        await axios.post(`${API}/upload`, {
+          imageUrl
+        });
+
+      }
+
+      fetchPhotos();
+
+    } catch (error) {
+      console.error(error);
+    }
+
   };
 
-  const deletePhoto = (id) => {
-    const updated = photos.filter((p) => p.id !== id);
-    setPhotos(updated);
+
+
+  // Delete Photo
+  const deletePhoto = async (id) => {
+
+    try {
+
+      await axios.delete(`${API}/delete/${id}`);
+      fetchPhotos();
+
+    } catch (error) {
+      console.error(error);
+    }
+
   };
+
+
 
   return (
 
@@ -35,8 +83,10 @@ function GalleryManagement() {
       <div className="bg-white shadow rounded-xl p-4 mb-6">
 
         <label className="flex items-center gap-2 bg-sky-700 text-white px-4 py-2 rounded w-fit cursor-pointer">
+
           <Upload size={18} />
           Upload Photos
+
           <input
             type="file"
             multiple
@@ -44,9 +94,11 @@ function GalleryManagement() {
             onChange={handleUpload}
             className="hidden"
           />
+
         </label>
 
       </div>
+
 
       {/* Gallery Grid */}
 
@@ -61,18 +113,18 @@ function GalleryManagement() {
         {photos.map((photo) => (
 
           <div
-            key={photo.id}
+            key={photo._id}
             className="relative bg-white rounded-lg shadow overflow-hidden"
           >
 
             <img
-              src={photo.url}
+              src={photo.imageUrl}
               alt="gallery"
               className="w-full h-40 object-cover"
             />
 
             <button
-              onClick={() => deletePhoto(photo.id)}
+              onClick={() => deletePhoto(photo._id)}
               className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded"
             >
               <Trash2 size={16} />
@@ -87,6 +139,7 @@ function GalleryManagement() {
     </div>
 
   );
+
 }
 
 export default GalleryManagement;
