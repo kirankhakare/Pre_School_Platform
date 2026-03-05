@@ -5,7 +5,7 @@ import logo from "/logo2.png";
 function Footer() {
   return (
     <footer className="bg-sky-100 text-sky-950 font-sans relative pt-2 pb-8 mt-20">
-      {/* Decorative Wavy Top Divider */}
+    
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform -translate-y-[99%]">
         <svg
           className="relative block w-full h-[50px] md:h-[80px]"
