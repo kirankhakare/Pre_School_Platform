@@ -11,12 +11,14 @@ import Register from "../common/pages/Register";
 
 import AdminLogin from "../admin/pages/AdminLogin";
 import AdminDashboard from "../admin/pages/AdminDashboard";
+import ManageUsers from "../admin/pages/ManageUsers";
 
 import TeacherLogin from "../teacher/pages/TeacherLogin";
 import TeacherDashboard from "../teacher/pages/TeacherDashboard";
 
 import ParentLogin from "../parent/pages/ParentLogin";
 import ParentDashboard from "../parent/pages/ParentDashboard";
+
 
 function AppRoutes() {
   return (
@@ -36,6 +38,7 @@ function AppRoutes() {
         {/* 🔐 Admin */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<ManageUsers />} />
 
         {/* 🔐 Teacher */}
         <Route path="/teacher/login" element={<TeacherLogin />} />
