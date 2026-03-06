@@ -82,8 +82,8 @@ function ManageUsers() {
                     <button
                         onClick={() => setActiveTab("students")}
                         className={`px-6 py-3 rounded-2xl font-bold text-lg transition-all border-4 border-white shadow-md ${activeTab === "students"
-                                ? "bg-gradient-to-r from-pink-400 to-orange-400 text-white"
-                                : "bg-white text-sky-900 hover:bg-pink-50"
+                            ? "bg-gradient-to-r from-pink-400 to-orange-400 text-white"
+                            : "bg-white text-sky-900 hover:bg-pink-50"
                             }`}
                     >
                         Students (156)
@@ -91,8 +91,8 @@ function ManageUsers() {
                     <button
                         onClick={() => setActiveTab("teachers")}
                         className={`px-6 py-3 rounded-2xl font-bold text-lg transition-all border-4 border-white shadow-md ${activeTab === "teachers"
-                                ? "bg-gradient-to-r from-blue-400 to-green-400 text-white"
-                                : "bg-white text-sky-900 hover:bg-blue-50"
+                            ? "bg-gradient-to-r from-blue-400 to-green-400 text-white"
+                            : "bg-white text-sky-900 hover:bg-blue-50"
                             }`}
                     >
                         Teachers (12)
@@ -205,8 +205,8 @@ function ManageUsers() {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${student.status === 'active'
-                                                        ? 'bg-green-100 text-green-600'
-                                                        : 'bg-red-100 text-red-600'
+                                                    ? 'bg-green-100 text-green-600'
+                                                    : 'bg-red-100 text-red-600'
                                                     }`}>
                                                     {student.status}
                                                 </span>
@@ -260,8 +260,8 @@ function ManageUsers() {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${teacher.status === 'active'
-                                                        ? 'bg-green-100 text-green-600'
-                                                        : 'bg-red-100 text-red-600'
+                                                    ? 'bg-green-100 text-green-600'
+                                                    : 'bg-red-100 text-red-600'
                                                     }`}>
                                                     {teacher.status}
                                                 </span>
