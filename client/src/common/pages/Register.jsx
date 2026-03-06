@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { motion } from "framer-motion";
-import { 
-  User, 
-  Mail, 
-  Lock, 
-  Phone, 
-  Eye, 
+import {
+  User,
+  Mail,
+  Lock,
+  Phone,
+  Eye,
   EyeOff,
   Baby,
   School,
@@ -29,11 +31,16 @@ function RegisterPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   // Form state
   const [loginForm, setLoginForm] = useState({
     role: "",
-    username: "",
+    email: "", // Changed from username to email since backend expects email
     password: ""
   });
 
@@ -64,23 +71,100 @@ function RegisterPage() {
   };
 
   // Handle login submit
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Data:", loginForm);
-    // Add your login logic here
+    setError(null);
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: loginForm.email,
+          password: loginForm.password,
+          role: loginForm.role
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to login");
+      }
+
+      console.log("Login Success:", data);
+
+      // Store user info briefly (typically you'd use Context/Redux)
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      login(data);
+
+      // Route based on role selected vs role returned
+      if (data.role === "admin") navigate("/admin/dashboard");
+      else if (data.role === "teacher") navigate("/teacher/dashboard");
+      else navigate("/parent/dashboard");
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Handle register submit
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    console.log("Register Data:", registerForm);
-    // Add your registration logic here
+    setError(null);
+    setLoading(true);
+
+    if (registerForm.password !== registerForm.confirmPassword) {
+      setError("Passwords do not match!");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: registerForm.name,
+          email: registerForm.email,
+          password: registerForm.password,
+          role: registerForm.role,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to register");
+      }
+
+      console.log("Register Success:", data);
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      login(data);
+
+      if (data.role === "admin") navigate("/admin/dashboard");
+      else if (data.role === "teacher") navigate("/teacher/dashboard");
+      else navigate("/parent/dashboard");
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <PublicNavbar />
-      
+
       <main className="pt-24 bg-sky-50 pb-20 overflow-hidden">
 
         {/* Floating Decorative Elements - Same as Classes/Admission pages */}
@@ -108,7 +192,7 @@ function RegisterPage() {
                 )}
               </h1>
               <p className="text-xl text-sky-700 font-medium max-w-2xl mx-auto bg-white/50 p-4 rounded-3xl">
-                {isLogin 
+                {isLogin
                   ? "Access your portal and stay connected with your child's journey"
                   : "Register to access parent/teacher/admin portal and get updates"
                 }
@@ -123,11 +207,10 @@ function RegisterPage() {
             <div className="flex justify-center gap-4">
               <motion.button
                 onClick={() => setIsLogin(true)}
-                className={`px-12 py-4 rounded-3xl font-bold text-xl transition-all border-4 border-white shadow-lg ${
-                  isLogin 
-                    ? "bg-gradient-to-r from-pink-400 to-orange-400 text-white" 
-                    : "bg-white text-sky-900 hover:bg-pink-50"
-                }`}
+                className={`px-12 py-4 rounded-3xl font-bold text-xl transition-all border-4 border-white shadow-lg ${isLogin
+                  ? "bg-gradient-to-r from-pink-400 to-orange-400 text-white"
+                  : "bg-white text-sky-900 hover:bg-pink-50"
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -136,11 +219,10 @@ function RegisterPage() {
               </motion.button>
               <motion.button
                 onClick={() => setIsLogin(false)}
-                className={`px-12 py-4 rounded-3xl font-bold text-xl transition-all border-4 border-white shadow-lg ${
-                  !isLogin 
-                    ? "bg-gradient-to-r from-blue-400 to-green-400 text-white" 
-                    : "bg-white text-sky-900 hover:bg-blue-50"
-                }`}
+                className={`px-12 py-4 rounded-3xl font-bold text-xl transition-all border-4 border-white shadow-lg ${!isLogin
+                  ? "bg-gradient-to-r from-blue-400 to-green-400 text-white"
+                  : "bg-white text-sky-900 hover:bg-blue-50"
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -155,7 +237,7 @@ function RegisterPage() {
         <section className="py-12 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
-              
+
               {/* Left Column - Form */}
               <motion.div
                 key={isLogin ? "login-form" : "register-form"}
@@ -167,7 +249,7 @@ function RegisterPage() {
                 {/* Decorative Elements - Same as Classes page */}
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-pink-200 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-yellow-200 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
-                
+
                 <div className="relative z-10">
                   {/* Header with Icon - Same style as Classes page */}
                   <div className="flex items-center gap-3 mb-8">
@@ -186,6 +268,13 @@ function RegisterPage() {
                   {isLogin ? (
                     /* Updated Login Form with 3 fields */
                     <form onSubmit={handleLoginSubmit} className="space-y-6">
+                      {/* Error Message */}
+                      {error && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                          <span className="block sm:inline">{error}</span>
+                        </div>
+                      )}
+
                       {/* Select Role Field */}
                       <div>
                         <label className="block text-sky-800 font-bold mb-2 flex items-center gap-2">
@@ -206,18 +295,18 @@ function RegisterPage() {
                         </select>
                       </div>
 
-                      {/* Username Field */}
+                      {/* Email Field */}
                       <div>
                         <label className="block text-sky-800 font-bold mb-2 flex items-center gap-2">
-                          <User size={18} className="text-blue-500" />
-                          Username
+                          <Mail size={18} className="text-blue-500" />
+                          Email
                         </label>
                         <input
-                          type="text"
-                          name="username"
-                          value={loginForm.username}
+                          type="email"
+                          name="email"
+                          value={loginForm.email}
                           onChange={handleLoginChange}
-                          placeholder="Enter your username"
+                          placeholder="Enter your email"
                           required
                           className="w-full p-4 rounded-2xl border-2 border-blue-200 focus:border-blue-400 outline-none font-medium text-sky-900 transition-all bg-blue-50/30"
                         />
@@ -263,16 +352,23 @@ function RegisterPage() {
                       {/* Login Button */}
                       <motion.button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-pink-400 to-orange-400 text-white font-bold text-xl py-4 px-6 rounded-2xl shadow-lg border-4 border-white hover:shadow-xl transition-all"
+                        disabled={loading}
+                        className="w-full bg-gradient-to-r from-pink-400 to-orange-400 text-white font-bold text-xl py-4 px-6 rounded-2xl shadow-lg border-4 border-white hover:shadow-xl transition-all disabled:opacity-70"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        Login to Portal 🔐
+                        {loading ? "Logging in..." : "Login to Portal 🔐"}
                       </motion.button>
                     </form>
                   ) : (
                     /* Updated Registration Form with 7 fields */
                     <form onSubmit={handleRegisterSubmit} className="space-y-5">
+                      {/* Error Message */}
+                      {error && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                          <span className="block sm:inline">{error}</span>
+                        </div>
+                      )}
                       {/* Full Name */}
                       <div>
                         <label className="block text-sky-800 font-bold mb-2 flex items-center gap-2">
@@ -427,11 +523,12 @@ function RegisterPage() {
                       {/* Register Button */}
                       <motion.button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-pink-400 to-purple-400 text-white font-bold text-xl py-4 px-6 rounded-2xl shadow-lg border-4 border-white hover:shadow-xl transition-all"
+                        disabled={loading}
+                        className="w-full bg-gradient-to-r from-pink-400 to-purple-400 text-white font-bold text-xl py-4 px-6 rounded-2xl shadow-lg border-4 border-white hover:shadow-xl transition-all disabled:opacity-70"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        Create Account ✨
+                        {loading ? "Creating..." : "Create Account ✨"}
                       </motion.button>
                     </form>
                   )}
@@ -472,7 +569,7 @@ function RegisterPage() {
                     </div>
                     <h3 className="text-2xl font-extrabold text-sky-900">Benefits</h3>
                   </div>
-                  
+
                   <ul className="space-y-4">
                     {[
                       "Track progress & attendance",

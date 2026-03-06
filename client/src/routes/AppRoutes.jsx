@@ -11,12 +11,15 @@ import Register from "../common/pages/Register";
 
 import AdminLogin from "../admin/pages/AdminLogin";
 import AdminDashboard from "../admin/pages/AdminDashboard";
+import ManageUsers from "../admin/pages/ManageUsers";
 
 import TeacherLogin from "../teacher/pages/TeacherLogin";
 import TeacherDashboard from "../teacher/pages/TeacherDashboard";
 
 import ParentLogin from "../parent/pages/ParentLogin";
 import ParentDashboard from "../parent/pages/ParentDashboard";
+
+import ProtectedRoute from "../components/ProtectedRoute";
 
 function AppRoutes() {
   return (
@@ -35,15 +38,37 @@ function AppRoutes() {
 
         {/* 🔐 Admin */}
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/dashboard" element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/students/all" element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <ManageUsers />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/teachers/all" element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <ManageUsers />
+          </ProtectedRoute>
+        } />
 
         {/* 🔐 Teacher */}
         <Route path="/teacher/login" element={<TeacherLogin />} />
-        <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+        <Route path="/teacher/dashboard" element={
+          <ProtectedRoute allowedRoles={['teacher']}>
+            <TeacherDashboard />
+          </ProtectedRoute>
+        } />
 
         {/* 🔐 Parent */}
         <Route path="/parent/login" element={<ParentLogin />} />
-        <Route path="/parent/dashboard" element={<ParentDashboard />} />
+        <Route path="/parent/dashboard" element={
+          <ProtectedRoute allowedRoles={['parent']}>
+            <ParentDashboard />
+          </ProtectedRoute>
+        } />
 
       </Routes>
     </BrowserRouter>
