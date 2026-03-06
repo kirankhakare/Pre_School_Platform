@@ -95,9 +95,8 @@ function PublicNavbar() {
 
       {/* Mobile Menu with slide-down animation */}
       <div
-        className={`md:hidden bg-white shadow-xl transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? "max-h-96 py-6" : "max-h-0"
-        }`}
+        className={`md:hidden bg-white shadow-xl transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 py-6" : "max-h-0"
+          }`}
       >
         <div className="flex flex-col items-center gap-5 text-purple-600 font-semibold text-lg">
 

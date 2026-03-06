@@ -1,179 +1,131 @@
 import { Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function PublicNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Toggle hamburger icon
   const menuIcon = isMobileMenuOpen ? "✕" : "☰";
 
-  return (
-    <nav className="fixed w-full z-50 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 shadow-2xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+  // Navbar background change on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
-        {/* Logo with playful bounce on hover */}
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+        ? "bg-white shadow-lg py-2"
+        : "bg-transparent py-4"
+        }`}
+    >
+      {/* Navbar Container */}
+      <div className="w-full px-4 flex justify-between items-center">
+
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3">
           <img
-            src="/logo2.png"   // put your logo inside public folder
+            src="/logo2.png"
             alt="Adhyayan Kids Academy"
-            className="h-12 w-auto group-hover:scale-105 transition duration-300"
+            className="h-12 w-auto"
           />
-          <span className="text-white text-xl font-bold tracking-wide hidden sm:block">
-            Adhyayan Kids Academy
+
+          <span className="text-xl font-bold hidden sm:block text-black">
+            OctaWisdom <br />School Of Excellence
           </span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 relative">
+        <div className="hidden md:flex items-center gap-8">
 
-          {/* Navigation Links with playful hover effect */}
-          <Link
-            to="/"
-            className="text-white text-lg font-medium hover:text-yellow-300 transition duration-300 relative group"
-          >
-            Home
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link
-            to="/about"
-            className="text-white text-lg font-medium hover:text-yellow-300 transition duration-300 relative group"
-          >
-            About
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link
-            to="/classes"
-            className="text-white text-lg font-medium hover:text-yellow-300 transition duration-300 relative group"
-          >
-            Classes
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link
-            to="/admission"
-            className="text-white text-lg font-medium hover:text-yellow-300 transition duration-300 relative group"
-          >
-            Admission
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link
-            to="/gallery"
-            className="text-white text-lg font-medium hover:text-yellow-300 transition duration-300 relative group"
-          >
-            Gallery
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link
-            to="/contact"
-            className="text-white text-lg font-medium hover:text-yellow-300 transition duration-300 relative group"
-          >
-            Contact
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
+          <NavLink to="/" label="Home" />
+          <NavLink to="/about" label="About" />
+          <NavLink to="/classes" label="Classes" />
+          <NavLink to="/admission" label="Admission" />
+          <NavLink to="/gallery" label="Gallery" />
+          <NavLink to="/contact" label="Contact" />
 
-          {/* Desktop Sign Up Button - Links to Registration Page */}
+          {/* Sign Up Button */}
           <Link
             to="/register"
-            className="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-yellow-300 hover:scale-105 transform transition duration-200 flex items-center gap-2 shadow-md"
+            className="bg-blue-500 text-white px-6 py-2 hover:bg-blue-600 rounded-xl font-bold shadow-md transition"
           >
-            <span>📝</span> Sign Up
+            SignUp
           </Link>
+
         </div>
 
-        {/* Mobile Menu Button with animated icon */}
+        {/* Mobile Menu Button */}
         <button
-          onClick={() => {
-            setIsMobileMenuOpen(!isMobileMenuOpen);
-          }}
-          className="md:hidden text-white text-4xl focus:outline-none transform transition duration-300 hover:scale-110"
-          aria-label="Toggle menu"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden text-3xl text-black"
         >
           {menuIcon}
         </button>
+
       </div>
 
-      {/* Mobile Menu with slide-down animation */}
-      <div
-        className={`md:hidden bg-white shadow-xl transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? "max-h-96 py-6" : "max-h-0"
-        }`}
-      >
-        <div className="flex flex-col items-center gap-5 text-purple-600 font-semibold text-lg">
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden shadow-lg py-6">
+          <div className="flex flex-col items-center gap-5 text-gray-700 font-medium">
 
-          <Link
-            to="/"
-            className="hover:bg-purple-100 w-full text-center py-3 transition flex items-center justify-center gap-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span>🏠</span> Home
-          </Link>
-          <Link
-            to="/about"
-            className="hover:bg-purple-100 w-full text-center py-3 transition flex items-center justify-center gap-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span>📖</span> About
-          </Link>
-          <Link
-            to="/classes"
-            className="hover:bg-purple-100 w-full text-center py-3 transition flex items-center justify-center gap-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span>🎨</span> Classes
-          </Link>
-          <Link
-            to="/admission"
-            className="hover:bg-purple-100 w-full text-center py-3 transition flex items-center justify-center gap-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span>📝</span> Admission
-          </Link>
-          <Link
-            to="/gallery"
-            className="hover:bg-purple-100 w-full text-center py-3 transition flex items-center justify-center gap-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span>🖼️</span> Gallery
-          </Link>
-          <Link
-            to="/contact"
-            className="hover:bg-purple-100 w-full text-center py-3 transition flex items-center justify-center gap-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span>📞</span> Contact
-          </Link>
+            <MobileLink to="/" label="Home" closeMenu={setIsMobileMenuOpen} />
+            <MobileLink to="/about" label="About" closeMenu={setIsMobileMenuOpen} />
+            <MobileLink to="/classes" label="Classes" closeMenu={setIsMobileMenuOpen} />
+            <MobileLink to="/admission" label="Admission" closeMenu={setIsMobileMenuOpen} />
+            <MobileLink to="/gallery" label="Gallery" closeMenu={setIsMobileMenuOpen} />
+            <MobileLink to="/contact" label="Contact" closeMenu={setIsMobileMenuOpen} />
 
-          {/* Mobile Sign Up Button - Links to Registration Page */}
-          <Link
-            to="/register"
-            className="w-full flex items-center justify-center gap-2 py-3 text-purple-600 hover:bg-purple-100 transition font-semibold border-t-2 border-purple-100"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span>📝</span> Sign Up
-          </Link>
+            <Link
+              to="/register"
+              className="bg-blue-500 text-white px-6 py-2 rounded-xl font-bold shadow-md transition"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Sign Up
+            </Link>
+
+          </div>
         </div>
-      </div>
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes bounce-sm {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
-        }
-        .animate-bounce-sm {
-          animation: bounce-sm 1.5s infinite;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.2s ease-out;
-        }
-      `}</style>
+      )}
     </nav>
   );
 }
 
+/* Desktop Navigation Link */
+function NavLink({ to, label }) {
+  return (
+    <Link
+      to={to}
+      className="text-xl font-semibold text-black hover:text-pink-500 transition"
+    >
+      {label}
+    </Link>
+  );
+}
+
+/* Mobile Navigation Link */
+function MobileLink({ to, label, closeMenu }) {
+  return (
+    <Link
+      to={to}
+      onClick={() => closeMenu(false)}
+      className="hover:text-pink-500"
+    >
+      {label}
+    </Link>
+  );
+}
+
 export default PublicNavbar;
+
+
