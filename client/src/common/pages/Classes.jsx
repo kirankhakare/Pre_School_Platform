@@ -1,14 +1,23 @@
 import PublicNavbar from "../components/PublicNavbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { 
-  BookOpen, 
-  Paintbrush, 
-  Music, 
-  Gamepad2, 
-  Apple, 
-  Clock, 
-  Users, 
+import classImg from '../../assets/class.png';
+
+import artsImg from '../../assets/arts.png';
+import libraryImg from '../../assets/library.png';
+import musicImg from '../../assets/music.png';
+import playImg from '../../assets/play.png';
+import puzzleImg from '../../assets/puzzle.png';
+import dramaImg from '../../assets/drama.png';
+
+import {
+  BookOpen,
+  Paintbrush,
+  Music,
+  Gamepad2,
+  Apple,
+  Clock,
+  Users,
   Calendar,
   Star,
   Heart,
@@ -55,75 +64,106 @@ function Classes() {
 
   // Class Teachers
   const teachers = [
-    { name: "Ms. Priya Sharma", qualification: "Montessori Certified", experience: "8 years", image: "👩‍🏫", class: "KG 1" },
-    { name: "Ms. Neha Gupta", qualification: "Early Childhood Education", experience: "6 years", image: "👩‍🏫", class: "KG 2" },
+    {
+      name: "Ms. Priya Sharma",
+      class: "Jr. KG",
+      qualification: "B.Ed in Early Childhood Education",
+      experience: "5 Years",
+      image: "👩‍🏫"
+    },
+    {
+      name: "Mr. Rohit Patil",
+      class: "Jr. KG",
+      qualification: "Diploma in Preschool Education",
+      experience: "4 Years",
+      image: "👨‍🏫"
+    },
+    {
+      name: "Ms. Anjali Deshmukh",
+      class: "Sr. KG",
+      qualification: "B.Ed in Primary Education",
+      experience: "6 Years",
+      image: "👩‍🏫"
+    },
+    {
+      name: "Mr. Sameer Kulkarni",
+      class: "Sr. KG",
+      qualification: "M.Ed in Early Childhood Education",
+      experience: "7 Years",
+      image: "👨‍🏫"
+    }
   ];
-
   return (
     <>
       <PublicNavbar />
-      
+
       <main className="pt-24 bg-gradient-to-b from-sky-50 via-white to-sky-50 pb-20 overflow-hidden">
-        
+
         {/* Floating Decorative Elements */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <motion.div 
-            className="absolute top-20 left-10 w-20 h-20 bg-yellow-200 rounded-full opacity-30"
-            animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
-            transition={{ duration: 8, repeat: Infinity }}
-          />
-          <motion.div 
-            className="absolute bottom-40 right-10 w-32 h-32 bg-pink-200 rounded-full opacity-30"
-            animate={{ y: [0, -40, 0], x: [0, -20, 0] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
-          <motion.div 
-            className="absolute top-60 right-20 w-16 h-16 bg-blue-200 rounded-full opacity-30"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 6, repeat: Infinity }}
-          />
-        </div>
 
-        {/* Header Section with Cartoon Style */}
-        <section className="relative px-6 pt-10 pb-16">
-          <div className="max-w-7xl mx-auto">
+
+        {/* Hero Section */}
+        <section className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6">
+          <img
+            src={classImg}
+            alt="Class Hero"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+
+          <div className="relative max-w-5xl mx-auto text-center text-white px-4 sm:px-0">
             <motion.div
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: -30 }}
+              initial={{ opacity: 0, y: -40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="inline-block bg-gradient-to-r from-pink-400 to-orange-400 text-white px-8 py-3 rounded-full text-2xl font-bold shadow-lg mb-6 border-4 border-white">
-                🎓 Our Little Learners
+              <div className="inline-block bg-gradient-to-r from-pink-500 to-orange-400 px-6 sm:px-8 py-2 sm:py-3 rounded-full text-lg sm:text-xl font-bold shadow-lg mb-6">
+                🎓 Welcome to Adhyayan Kids
               </div>
-              <h1 className="text-5xl lg:text-6xl font-extrabold text-sky-900 mb-4">
-                Adhyayan Kids <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">Classes</span>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                A Happy Place <br />
+                <span className="text-yellow-300">Where Little Minds Grow</span>
               </h1>
-              <p className="text-xl text-sky-700 max-w-3xl mx-auto font-medium bg-white/50 p-4 rounded-3xl">
-                Where curiosity meets learning! Discover our engaging programs for KG 1 and KG 2 students.
+              <p className="text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-10 p-4 sm:p-6 rounded-3xl">
+                At <span className="font-bold">Adhyayan Kids Preschool</span>, we nurture curiosity, creativity, and confidence through fun learning activities, storytelling, music, and play-based education.
               </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <motion.button className="bg-yellow-400 text-sky-900 font-bold text-lg px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl" whileHover={{ scale: 1.05 }}>
+                  Explore Classes 🎒
+                </motion.button>
+                <motion.button className="bg-white text-pink-500 font-bold text-lg px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl" whileHover={{ scale: 1.05 }}>
+                  Admission Enquiry 📚
+                </motion.button>
+              </div>
             </motion.div>
+          </div>
+        </section>
 
-            {/* Class Cards - KG 1 and KG 2 */}
-            <div className="grid md:grid-cols-2 gap-8 relative z-10">
-              {/* KG 1 Card */}
+        {/* Classes Section */}
+        <section className="relative px-6 py-20 bg-white">
+
+          <div className="max-w-7xl mx-auto">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+
+              {/* JR KG Card */}
               <motion.div
-                className="bg-gradient-to-br from-pink-50 to-yellow-50 rounded-[4rem] p-8 shadow-xl border-4 border-white relative overflow-hidden group"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-gradient-to-br from-pink-50 to-yellow-50 rounded-[2rem] p-6 sm:p-8 shadow-xl border-2 sm:border-4 relative overflow-hidden group"
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
                 whileHover={{ scale: 1.02 }}
               >
-                {/* Decorative Elements */}
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-pink-200 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-yellow-200 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
-                
+
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-5xl font-black text-sky-900">KG 1</h2>
-                    <span className="text-7xl">🐼</span>
+
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
+                    <h2 className="text-3xl sm:text-5xl font-black text-sky-900">JR.KG</h2>
+                    <span className="text-5xl sm:text-7xl">🐼</span>
                   </div>
-                  
+
                   <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-4 mb-6 border-2 border-pink-200">
                     <p className="text-lg text-sky-800 font-bold flex items-center gap-2">
                       <Users className="text-pink-500" size={24} />
@@ -136,13 +176,10 @@ function Classes() {
                       <Star className="fill-yellow-400 text-yellow-400" size={28} />
                       Learning Focus
                     </h3>
-                    <div className="grid grid-cols-2 gap-3">
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {kg1Curriculum.slice(0, 4).map((item, i) => (
-                        <motion.div
-                          key={i}
-                          className={`${item.color} p-3 rounded-2xl flex items-center gap-2 text-sm font-bold`}
-                          whileHover={{ scale: 1.05 }}
-                        >
+                        <motion.div key={i} className={`${item.color} p-2 sm:p-3 rounded-xl flex items-center gap-2 text-sm sm:text-base font-bold`} whileHover={{ scale: 1.05 }}>
                           {item.icon}
                           <span>{item.subject}</span>
                         </motion.div>
@@ -157,27 +194,30 @@ function Classes() {
                   >
                     Explore KG 1 Program 🐼
                   </motion.button>
+
                 </div>
               </motion.div>
 
-              {/* KG 2 Card */}
+
+              {/* SR KG Card */}
               <motion.div
-                className="bg-gradient-to-br from-blue-50 to-green-50 rounded-[4rem] p-8 shadow-xl border-4 border-white relative overflow-hidden group"
+                className="bg-gradient-to-br from-pink-50 to-yellow-50 rounded-[2rem] p-6 sm:p-8 shadow-xl border-2 sm:border-4 relative overflow-hidden group"
                 initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
                 whileHover={{ scale: 1.02 }}
               >
-                {/* Decorative Elements */}
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-200 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-green-200 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
-                
+
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-5xl font-black text-sky-900">KG 2</h2>
-                    <span className="text-7xl">🐨</span>
+
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
+                    <h2 className="text-3xl sm:text-5xl font-black text-sky-900">SR.KG</h2>
+                    <span className="text-5xl sm:text-7xl">🐼</span>
                   </div>
-                  
+
                   <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-4 mb-6 border-2 border-blue-200">
                     <p className="text-lg text-sky-800 font-bold flex items-center gap-2">
                       <Users className="text-blue-500" size={24} />
@@ -190,13 +230,10 @@ function Classes() {
                       <Star className="fill-yellow-400 text-yellow-400" size={28} />
                       Learning Focus
                     </h3>
-                    <div className="grid grid-cols-2 gap-3">
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {kg2Curriculum.slice(0, 4).map((item, i) => (
-                        <motion.div
-                          key={i}
-                          className={`${item.color} p-3 rounded-2xl flex items-center gap-2 text-sm font-bold`}
-                          whileHover={{ scale: 1.05 }}
-                        >
+                        <motion.div key={i} className={`${item.color} p-2 sm:p-3 rounded-xl flex items-center gap-2 text-sm sm:text-base font-bold`} whileHover={{ scale: 1.05 }}>
                           {item.icon}
                           <span>{item.subject}</span>
                         </motion.div>
@@ -211,16 +248,20 @@ function Classes() {
                   >
                     Explore KG 2 Program 🐨
                   </motion.button>
+
                 </div>
               </motion.div>
+
             </div>
+
           </div>
+
         </section>
 
         {/* Full Curriculum Section */}
         <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
-            <motion.h2 
+            <motion.h2
               className="text-4xl font-extrabold text-sky-900 text-center mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -228,7 +269,7 @@ function Classes() {
             >
               Complete Learning <span className="text-pink-500">Curriculum</span>
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-sky-700 text-center mb-16 max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -310,7 +351,7 @@ function Classes() {
         </section>
 
         {/* Daily Schedule Section */}
-        <section className="py-20 px-6 bg-gradient-to-r from-yellow-50 to-orange-50">
+        <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="text-center mb-12"
@@ -325,23 +366,13 @@ function Classes() {
               <p className="text-xl text-sky-700">A fun-filled day of learning and play!</p>
             </motion.div>
 
-            <div className="max-w-3xl mx-auto">
+            <div className="flex flex-col gap-4">
               {dailySchedule.map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="flex items-center gap-4 mb-4 bg-white p-4 rounded-2xl shadow-md border-2 border-orange-100 hover:border-orange-300 transition-colors"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ scale: 1.02, x: 10 }}
-                >
-                  <div className="text-3xl bg-orange-100 w-14 h-14 rounded-xl flex items-center justify-center">
-                    {item.icon}
-                  </div>
+                <motion.div key={i} className="flex items-center gap-4 p-3 sm:p-4 rounded-2xl shadow-md border-2 border-orange-100 hover:border-orange-300 transition-colors" whileHover={{ scale: 1.02 }}>
+                  <div className="text-2xl sm:text-3xl bg-orange-100 w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center">{item.icon}</div>
                   <div className="flex-1">
-                    <span className="font-bold text-pink-500 text-lg">{item.time}</span>
-                    <p className="font-bold text-sky-900">{item.activity}</p>
+                    <span className="font-bold text-pink-500 text-sm sm:text-lg">{item.time}</span>
+                    <p className="font-bold text-sky-900 text-sm sm:text-base">{item.activity}</p>
                   </div>
                 </motion.div>
               ))}
@@ -369,11 +400,11 @@ function Classes() {
               Nurturing young minds with love and expertise
             </motion.p>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
               {teachers.map((teacher, i) => (
                 <motion.div
                   key={i}
-                  className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-[3rem] border-4 border-white shadow-xl relative overflow-hidden group"
+                  className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 sm:p-8 rounded-[2rem] border-2 sm:border-4 shadow-xl relative overflow-hidden group"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -381,14 +412,12 @@ function Classes() {
                   whileHover={{ scale: 1.05 }}
                 >
                   <div className="absolute -right-5 -top-5 w-24 h-24 bg-purple-200 rounded-full opacity-50 group-hover:scale-150 transition-transform"></div>
-                  
+
                   <div className="relative z-10">
-                    <div className="text-7xl mb-4 bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto border-4 border-pink-200">
-                      {teacher.image}
-                    </div>
-                    <h3 className="text-2xl font-bold text-sky-900 text-center mb-2">{teacher.name}</h3>
-                    <p className="text-pink-500 font-bold text-center mb-4">{teacher.class} Class Teacher</p>
-                    
+                    <div className="text-6xl sm:text-7xl mb-4 bg-white w-20 sm:w-24 h-20 sm:h-24 rounded-full flex items-center justify-center mx-auto border-4 border-pink-200">{teacher.image}</div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-sky-900 text-center mb-2">{teacher.name}</h3>
+                    <p className="text-pink-500 font-bold text-center mb-4 text-sm sm:text-base">{teacher.class} Class Teacher</p>
+
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 space-y-2">
                       <p className="flex items-center gap-2 text-sky-700">
                         <Heart size={18} className="text-pink-500" />
@@ -406,30 +435,112 @@ function Classes() {
           </div>
         </section>
 
-        {/* Interactive Features Section */}
-        <section className="py-20 px-6 bg-gradient-to-b from-sky-100 to-white">
+        <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-6">
+
+            {/* Section Heading */}
+            <motion.h2
+              className="text-4xl font-extrabold text-sky-900 text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              Explore Our <span className="text-pink-500">Interactive Zones</span>
+            </motion.h2>
+
+            {/* Zig-Zag Grid */}
+            <div className="flex flex-col gap-16">
               {[
-                { icon: "🎨", title: "Art Corner", desc: "Daily creative activities", color: "bg-pink-100" },
-                { icon: "📚", title: "Reading Nook", desc: "Story time & library", color: "bg-blue-100" },
-                { icon: "🎵", title: "Music Zone", desc: "Singing & instruments", color: "bg-purple-100" },
-                { icon: "⚽", title: "Play Area", desc: "Indoor & outdoor games", color: "bg-green-100" },
-                { icon: "🧩", title: "Puzzle Time", desc: "Brain development games", color: "bg-yellow-100" },
-                { icon: "🎭", title: "Drama Play", desc: "Role play & expression", color: "bg-orange-100" },
+                {
+                  icon: "🎨",
+                  title: "Art Corner",
+                  desc: "Daily creative activities including painting, sketching, and craft work. Helps develop fine motor skills, imagination, and color recognition. Activities include clay modeling, watercolors, and DIY crafts.",
+                  benefits: ["Boost creativity", "Improve focus", "Enhance coordination"],
+                  age: "Ages 3-6",
+                  bgImg: artsImg
+                },
+                {
+                  icon: "📚",
+                  title: "Reading Book",
+                  desc: "Story time & library sessions designed to enhance language skills and comprehension. Includes group storytelling, interactive reading, and early literacy games.",
+                  benefits: ["Enhance vocabulary", "Encourage love for books", "Improve listening skills"],
+                  age: "Ages 2-6",
+                  bgImg: libraryImg
+                },
+                {
+                  icon: "🎵",
+                  title: "Music Zone",
+                  desc: "Singing, rhythm games, and musical instrument activities. Develops auditory skills, memory, and emotional expression. Includes drums, xylophone, and sing-along sessions.",
+                  benefits: ["Boost memory", "Develop rhythm", "Encourage expression"],
+                  age: "Ages 3-6",
+                  bgImg: musicImg
+                },
+                {
+                  icon: "⚽",
+                  title: "Play Area",
+                  desc: "Indoor & outdoor games to promote physical activity and teamwork. Activities include ball games, obstacle courses, and cooperative play. Supports gross motor development and social interaction.",
+                  benefits: ["Enhance physical fitness", "Teamwork skills", "Coordination improvement"],
+                  age: "Ages 2-6",
+                  bgImg: playImg
+                },
+                {
+                  icon: "🧩",
+                  title: "Puzzle Time",
+                  desc: "Brain development games like jigsaw puzzles, matching, and problem-solving activities. Helps develop logic, critical thinking, and patience. Includes group challenges and individual tasks.",
+                  benefits: ["Boost problem-solving", "Enhance focus", "Encourage perseverance"],
+                  age: "Ages 3-6",
+                  bgImg: puzzleImg
+                },
+                {
+                  icon: "🎭",
+                  title: "Drama Play",
+                  desc: "Role play, skits, and expressive activities to build confidence and communication. Includes puppet shows, costume role-play, and storytelling. Nurtures creativity, empathy, and teamwork.",
+                  benefits: ["Boost confidence", "Enhance communication", "Encourage creativity"],
+                  age: "Ages 3-6",
+                  bgImg: dramaImg
+                },
               ].map((item, i) => (
                 <motion.div
                   key={i}
-                  className={`${item.color} p-6 rounded-3xl text-center border-4 border-white shadow-lg hover:shadow-xl transition-all`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  className={`flex flex-col md:flex-row items-center gap-8 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                    }`}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ scale: 1.05, rotate: 2 }}
+                  transition={{ duration: 0.8, delay: i * 0.2 }}
                 >
-                  <div className="text-5xl mb-3">{item.icon}</div>
-                  <h3 className="text-xl font-bold text-sky-900 mb-2">{item.title}</h3>
-                  <p className="text-sky-600 font-medium">{item.desc}</p>
+                  {/* Image */}
+                  <div className="md:w-1/2 relative rounded-3xl overflow-hidden shadow-lg border-4 border-white">
+                    <img
+                      src={item.bgImg}
+                      alt={item.title}
+                      className="w-full h-80 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40"></div>
+                  </div>
+
+                  {/* Text Content */}
+                  <motion.div
+                    className="md:w-1/2 text-center md:text-left p-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1 + i * 0.2 }}
+                  >
+                    <div className="text-6xl mb-4">{item.icon}</div>
+                    <h3 className="text-2xl font-bold text-sky-900 mb-4">{item.title}</h3>
+                    <p className="text-sky-800 font-medium leading-relaxed mb-4">{item.desc}</p>
+
+                    {/* Benefits List */}
+                    <ul className="list-disc list-inside text-sky-700 mb-2">
+                      {item.benefits.map((b, idx) => (
+                        <li key={idx}>{b}</li>
+                      ))}
+                    </ul>
+
+                    {/* Age info */}
+                    <p className="text-pink-500 font-semibold">Suitable for: {item.age}</p>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
@@ -437,7 +548,7 @@ function Classes() {
         </section>
 
         {/* Call to Action - Admission Enquiry */}
-        <section className="py-20 px-6">
+        <section className="py-20 px-6 bg-white">
           <motion.div
             className="max-w-4xl mx-auto bg-gradient-to-r from-pink-400 to-purple-400 p-12 rounded-[4rem] shadow-2xl border-4 border-white text-center relative overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
@@ -447,7 +558,7 @@ function Classes() {
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full opacity-20 transform -translate-x-20 -translate-y-20"></div>
             <div className="absolute bottom-0 right-0 w-60 h-60 bg-white rounded-full opacity-20 transform translate-x-20 translate-y-20"></div>
-            
+
             <div className="relative z-10">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -456,14 +567,14 @@ function Classes() {
               >
                 🎈
               </motion.div>
-              
+
               <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-4">
                 Ready to Start the Journey?
               </h2>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
                 Give your child the best start with our kindergarten programs. Limited seats available!
               </p>
-              
+
               <motion.button
                 className="bg-white text-pink-500 font-bold text-2xl py-4 px-12 rounded-full shadow-lg hover:shadow-xl transition-all border-4 border-white"
                 whileHover={{ scale: 1.1 }}
@@ -471,7 +582,7 @@ function Classes() {
               >
                 Enquire Now 🎒
               </motion.button>
-              
+
               <p className="text-white mt-6 font-medium flex items-center justify-center gap-2">
                 <Flower2 size={20} />
                 Admissions open for academic year 2024-25
