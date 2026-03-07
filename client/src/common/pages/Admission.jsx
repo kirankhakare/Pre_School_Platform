@@ -1,14 +1,14 @@
 import PublicNavbar from "../components/PublicNavbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { 
-  Baby, 
-  School, 
-  CalendarCheck, 
-  FileText, 
-  CheckCircle, 
-  Clock, 
-  Users, 
+import {
+  Baby,
+  School,
+  CalendarCheck,
+  FileText,
+  CheckCircle,
+  Clock,
+  Users,
   GraduationCap,
   Heart,
   Star,
@@ -22,71 +22,101 @@ import {
   MapPin,
   AlertCircle
 } from "lucide-react";
+import visitImg from "../../assets/visit.png";
+import formImg from "../../assets/form.png";
+import documentsImg from "../../assets/documents.png";
+import interactionImg from "../../assets/interaction.png";
+import feeImg from "../../assets/fee.png";
+import welcomeImg from "../../assets/welcome.png";
+
+import nurseryImg from "../../assets/nursery.png";
+
+import artsImg from "../../assets/arts.png";
+import storyImg from "../../assets/story.png";
+import musicImg from "../../assets/music.png";
+import learningImg from "../../assets/learning.png";
 
 function Admission() {
   // Admission Steps Data
   const admissionSteps = [
-    { 
-      step: 1, 
-      title: "Inquiry & Visit", 
-      description: "Contact us or schedule a campus tour to experience our environment",
+    {
+      step: 1,
+      title: "Inquiry & Visit",
+      description: `Parents are welcome to visit our school campus and explore the learning environment.
+Our staff will guide you through classrooms, play areas, and facilities.
+You can interact with teachers and understand our teaching approach.
+This visit helps parents feel confident about their child's early education journey.`,
       icon: "👋",
-      color: "bg-pink-100 text-pink-600"
+      image: visitImg
     },
-    { 
-      step: 2, 
-      title: "Application Form", 
-      description: "Fill out the admission form with child and parent details",
+    {
+      step: 2,
+      title: "Application Form",
+      description: `Parents need to fill out the admission application form with basic details.
+The form helps us understand the child’s background and learning needs.
+All information is kept secure and used only for admission purposes.
+Our team is always available to assist parents during the form filling process.`,
       icon: "📝",
-      color: "bg-blue-100 text-blue-600"
+      image: formImg
     },
-    { 
-      step: 3, 
-      title: "Document Submission", 
-      description: "Submit required documents and photographs",
+    {
+      step: 3,
+      title: "Document Submission",
+      description: `Parents must submit required documents for verification.
+This may include birth certificate, passport-size photos, and ID proof.
+Our staff carefully verifies the documents to ensure accurate records.
+This step helps us maintain a safe and organized student database.`,
       icon: "📄",
-      color: "bg-green-100 text-green-600"
+      image: documentsImg
     },
-    { 
-      step: 4, 
-      title: "Interaction Session", 
-      description: "Child-parent interaction with our teachers",
+    {
+      step: 4,
+      title: "Interaction Session",
+      description: `A short interaction session is arranged between the child and teachers.
+This helps us understand the child’s comfort level and communication skills.
+It is not a test but a friendly conversation for the child.
+Parents can also ask questions and know more about our school.`,
       icon: "🤝",
-      color: "bg-purple-100 text-purple-600"
+      image: interactionImg
     },
-    { 
-      step: 5, 
-      title: "Fee Payment", 
-      description: "Complete the admission by paying the fees",
+    {
+      step: 5,
+      title: "Fee Payment",
+      description: `Once admission is confirmed, parents can proceed with fee payment.
+Multiple payment options are available for convenience.
+A receipt and admission confirmation will be provided.
+This step officially secures the child’s seat for the academic year.`,
       icon: "💰",
-      color: "bg-orange-100 text-orange-600"
+      image: feeImg
     },
-    { 
-      step: 6, 
-      title: "Welcome Kit", 
-      description: "Receive welcome kit and class assignment",
+    {
+      step: 6,
+      title: "Welcome Kit",
+      description: `After completing all steps, the child becomes part of our school family.
+Students receive a welcome kit with basic learning materials.
+Teachers help children settle comfortably in their new class.
+We ensure every child begins their learning journey with joy.`,
       icon: "🎁",
-      color: "bg-yellow-100 text-yellow-600"
+      image: welcomeImg
     },
   ];
-
   // Fee Structure Data
   const feeStructure = [
-    { 
-      class: "KG 1", 
+    {
+      class: "JR.KG",
       ageGroup: "3.5 - 4.5 Years",
-      admissionFee: "₹15,000", 
-      tuitionFee: "₹3,500/month", 
+      admissionFee: "₹15,000",
+      tuitionFee: "₹3,500/month",
       activityFee: "₹1,000/month",
       totalAnnual: "₹55,000",
       color: "from-pink-400 to-orange-400",
       emoji: "🐼"
     },
-    { 
-      class: "KG 2", 
+    {
+      class: "SR.KG",
       ageGroup: "4.5 - 5.5 Years",
-      admissionFee: "₹15,000", 
-      tuitionFee: "₹3,500/month", 
+      admissionFee: "₹15,000",
+      tuitionFee: "₹3,500/month",
       activityFee: "₹1,000/month",
       totalAnnual: "₹55,000",
       color: "from-blue-400 to-green-400",
@@ -116,56 +146,52 @@ function Admission() {
 
   // FAQ Data
   const faqs = [
-    { 
-      question: "What is the ideal age for KG 1 admission?", 
+    {
+      question: "What is the ideal age for KG 1 admission?",
       answer: "Children between 3.5 to 4.5 years as of 31st March are eligible for KG 1 admission.",
       icon: "❓"
     },
-    { 
-      question: "Is there any admission test?", 
+    {
+      question: "Is there any admission test?",
       answer: "No, we conduct a friendly interaction session to understand the child's comfort level.",
       icon: "❓"
     },
-    { 
-      question: "What is the student-teacher ratio?", 
+    {
+      question: "What is the student-teacher ratio?",
       answer: "We maintain a 15:1 student-teacher ratio for personalized attention.",
       icon: "❓"
     },
-    { 
-      question: "Are parents allowed during the first few days?", 
+    {
+      question: "Are parents allowed during the first few days?",
       answer: "Yes, we have a gradual settling program where parents can stay with the child initially.",
       icon: "❓"
     },
   ];
 
+  const radius = 220; // circle size
+
   return (
     <>
       <PublicNavbar />
-      
+
       <main className="pt-24 bg-gradient-to-b from-sky-50 via-white to-sky-50 pb-20 overflow-hidden">
-        
-        {/* Floating Decorative Elements */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <motion.div 
-            className="absolute top-40 left-20 w-24 h-24 bg-pink-200 rounded-full opacity-30"
-            animate={{ y: [0, 40, 0], rotate: [0, 180, 360] }}
-            transition={{ duration: 12, repeat: Infinity }}
-          />
-          <motion.div 
-            className="absolute bottom-60 right-20 w-32 h-32 bg-blue-200 rounded-full opacity-30"
-            animate={{ scale: [1, 1.3, 1], x: [0, -30, 0] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
-          <motion.div 
-            className="absolute top-80 right-40 w-16 h-16 bg-yellow-200 rounded-full opacity-40"
-            animate={{ y: [0, -30, 0], x: [0, 30, 0] }}
-            transition={{ duration: 8, repeat: Infinity }}
-          />
-        </div>
+
+
 
         {/* Hero Section */}
-        <section className="relative px-6 pt-10 pb-16">
-          <div className="max-w-7xl mx-auto">
+        <section
+          className="relative px-4 sm:px-6 md:px-8 pt-10 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-20 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/admission img.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Dark overlay for better text visibility */}
+          {/* Dark Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
+
+          <div className="relative max-w-7xl mx-auto">
             <motion.div
               className="text-center mb-12"
               initial={{ opacity: 0, y: -30 }}
@@ -175,16 +201,22 @@ function Admission() {
               <div className="inline-block bg-gradient-to-r from-pink-400 to-purple-400 text-white px-8 py-3 rounded-full text-2xl font-bold shadow-lg mb-6 border-4 border-white">
                 🎒 Admissions Open 2024-25
               </div>
-              <h1 className="text-5xl lg:text-6xl font-extrabold text-sky-900 mb-4">
-                Join Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">  Adhyayan Kids</span> Family
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4">
+                Join Our{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-300">
+                  Adhyayan Kids
+                </span>{" "}
+                Family
               </h1>
-              <p className="text-xl text-sky-700 max-w-3xl mx-auto font-medium bg-white/50 p-4 rounded-3xl">
+
+              <p className="text-base sm:text-lg md:text-xl text-white max-w-full sm:max-w-3xl mx-auto font-medium p-4 rounded-3xl">
                 Give your child the best start in life. Apply for KG 1 and KG 2 admissions today!
               </p>
             </motion.div>
 
             {/* Quick Info Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto mb-12 sm:mb-16">
               {[
                 { icon: <Baby size={28} />, label: "Age 3.5+", color: "bg-pink-100" },
                 { icon: <School size={28} />, label: "Limited Seats", color: "bg-blue-100" },
@@ -210,7 +242,7 @@ function Admission() {
         {/* Fee Structure Cards - KG 1 and KG 2 */}
         <section className="py-16 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
-            <motion.h2 
+            <motion.h2
               className="text-4xl font-extrabold text-sky-900 text-center mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -218,7 +250,7 @@ function Admission() {
             >
               Fee Structure <span className="text-pink-500">2024-25</span>
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-sky-700 text-center mb-16"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -227,7 +259,7 @@ function Admission() {
               Transparent and affordable fee structure for both KG classes
             </motion.p>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
               {feeStructure.map((fee, index) => (
                 <motion.div
                   key={index}
@@ -242,13 +274,13 @@ function Admission() {
                     {/* Decorative Elements */}
                     <div className="absolute -right-10 -top-10 w-32 h-32 bg-pink-100 rounded-full opacity-50"></div>
                     <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-blue-100 rounded-full opacity-50"></div>
-                    
+
                     <div className="relative z-10">
                       <div className="flex items-center justify-between mb-6">
                         <h3 className="text-4xl font-black text-sky-900">{fee.class}</h3>
                         <span className="text-6xl">{fee.emoji}</span>
                       </div>
-                      
+
                       <p className="text-lg text-sky-700 font-bold mb-6 flex items-center gap-2">
                         <Users size={20} className="text-pink-500" />
                         {fee.ageGroup}
@@ -288,47 +320,194 @@ function Admission() {
           </div>
         </section>
 
-        {/* Admission Process Steps */}
-        <section className="py-20 px-6 bg-gradient-to-b from-pink-50 to-yellow-50">
+        <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
+
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-extrabold text-sky-900">
+                Nursery <span className="text-pink-500">Program</span>
+              </h2>
+
+              <p className="text-lg text-sky-700 mt-4 max-w-2xl mx-auto">
+                Our nursery program provides a warm and joyful environment where
+                children begin their learning journey through play, creativity,
+                exploration, and social interaction.
+              </p>
+            </div>
+
+
+            {/* Main Content */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center mb-12 sm:mb-16">
+              {/* Image */}
+              <div className="w-full aspect-[16/9] rounded-3xl overflow-hidden shadow-xl">
+                <img
+                  src={nurseryImg}
+                  alt="Nursery Class"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+
+
+              {/* Information */}
+              <div>
+
+                <h3 className="text-2xl font-bold text-sky-900 mb-4">
+                  Age Group: 2.5 – 3.5 Years
+                </h3>
+
+                <p className="text-sky-700 leading-relaxed mb-6">
+                  Our nursery program focuses on developing curiosity, creativity,
+                  and communication skills in young learners. Through play-based
+                  learning, storytelling, music, and interactive activities,
+                  children build confidence and social skills in a nurturing
+                  environment.
+                </p>
+
+
+                {/* Features */}
+                <div className="grid grid-cols-2 gap-4">
+
+                  <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                    🎨 Creative Activities
+                  </div>
+
+                  <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                    📚 Storytelling
+                  </div>
+
+                  <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                    🎵 Music & Rhymes
+                  </div>
+
+                  <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                    🤝 Social Interaction
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            {/* Nursery Activities Gallery */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
+                <img
+                  src={artsImg}
+                  alt="Creative Activity"
+                  className="w-full h-48 object-cover group-hover:scale-110 transition duration-500"
+                />
+                <div className="p-4 text-center font-semibold text-sky-900">
+                  Creative Art
+                </div>
+              </div>
+
+
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
+                <img
+                  src={storyImg}
+                  alt="Storytelling"
+                  className="w-full h-48 object-cover group-hover:scale-110 transition duration-500"
+                />
+                <div className="p-4 text-center font-semibold text-sky-900">
+                  Story Time
+                </div>
+              </div>
+
+
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
+                <img
+                  src={musicImg}
+                  alt="Music and Rhymes"
+                  className="w-full h-48 object-cover group-hover:scale-110 transition duration-500"
+                />
+                <div className="p-4 text-center font-semibold text-sky-900">
+                  Music & Rhymes
+                </div>
+              </div>
+
+
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
+                <img
+                  src={learningImg}
+                  alt="Play Learning"
+                  className="w-full h-48 object-cover group-hover:scale-110 transition duration-500"
+                />
+                <div className="p-4 text-center font-semibold text-sky-900">
+                  Play Learning
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* Admission Process Steps */}
+        <section className="py-16 px-6 bg-white">
+          <div className="max-w-7xl mx-auto">
+
+            {/* Heading */}
             <motion.h2
-              className="text-4xl font-extrabold text-sky-900 text-center mb-4"
+              className="text-4xl font-extrabold text-center text-sky-900 mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
               Simple <span className="text-pink-500">Admission Process</span>
             </motion.h2>
-            <motion.p
-              className="text-xl text-sky-700 text-center mb-16"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-            >
-              Just 6 easy steps to secure your child's seat
-            </motion.p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {admissionSteps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  className="bg-white p-6 rounded-3xl shadow-lg border-4 border-white hover:shadow-xl transition-all relative"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ y: -10 }}
-                >
-                  {/* Step Number Badge */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-pink-400 to-orange-400 rounded-full flex items-center justify-center text-white font-bold text-xl border-4 border-white">
-                    {step.step}
-                  </div>
-                  
-                  <div className="text-5xl mb-4">{step.icon}</div>
-                  <h3 className="text-xl font-bold text-sky-900 mb-2">{step.title}</h3>
-                  <p className="text-sky-600">{step.description}</p>
-                </motion.div>
-              ))}
+            <p className="text-center text-sky-700 mb-16">
+              Just 6 easy steps to secure your child's seat
+            </p>
+
+            <div className="space-y-12 sm:space-y-16 md:space-y-20">
+
+              {admissionSteps.map((step, index) => {
+
+                const isLeft = index % 2 === 0;
+
+                return (
+                  <motion.div
+                    key={index}
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    {/* IMAGE - always first */}
+                    <div className="relative bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition">
+                      {/* Step Number */}
+                      <div
+                        className={`absolute -top-5 ${index % 2 === 0 ? "-left-5" : "-right-5"
+                          } w-14 h-14 bg-gradient-to-r from-pink-500 to-orange-400 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg`}
+                      >
+                        {step.step}
+                      </div>
+
+                      <div className="w-full h-60 rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50">
+                        <img
+                          src={step.image}
+                          alt={step.title}
+                          className="max-h-full max-w-full object-contain transition duration-500 hover:scale-105"
+                        />
+                      </div>
+                    </div>
+
+                    {/* TEXT - always second */}
+                    <div>
+                      <h3 className="text-3xl font-bold text-sky-900 mb-3">{step.title}</h3>
+                      <p className="text-sky-700 text-lg leading-relaxed whitespace-pre-line mt-2">
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+
             </div>
           </div>
         </section>
@@ -336,7 +515,7 @@ function Admission() {
         {/* Required Documents */}
         <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
               {/* Documents List */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -430,7 +609,7 @@ function Admission() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 px-6 bg-gradient-to-b from-purple-50 to-pink-50">
+        <section className="py-20 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
             <motion.h2
               className="text-4xl font-extrabold text-sky-900 text-center mb-4"
@@ -449,7 +628,7 @@ function Admission() {
               Everything you need to know about KG admissions
             </motion.p>
 
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               {faqs.map((faq, i) => (
                 <motion.div
                   key={i}
@@ -474,9 +653,9 @@ function Admission() {
         </section>
 
         {/* Contact & Application Form Section */}
-        <section className="py-20 px-6">
+        <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-8 bg-gradient-to-br from-sky-100 to-white p-8 rounded-[4rem] shadow-2xl border-4 border-white">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 bg-gradient-to-br from-sky-100 to-white p-6 sm:p-8 md:p-10 rounded-[3rem] md:rounded-[4rem] shadow-2xl border-4 border-white">
               {/* Contact Info */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -485,7 +664,7 @@ function Admission() {
                 className="space-y-6"
               >
                 <h3 className="text-3xl font-extrabold text-sky-900 mb-6">Get in Touch</h3>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-md">
                     <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center">
@@ -550,12 +729,12 @@ function Admission() {
                 <h3 className="text-3xl font-extrabold text-sky-900 mb-6 text-center">
                   Quick Enquiry Form
                 </h3>
-                
+
                 <form className="space-y-4">
                   <div>
                     <label className="block text-sky-800 font-bold mb-2">Parent's Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="Enter your full name"
                       className="w-full p-4 rounded-2xl border-2 border-pink-200 focus:border-pink-400 outline-none font-medium text-sky-900"
                     />
@@ -563,8 +742,8 @@ function Admission() {
 
                   <div>
                     <label className="block text-sky-800 font-bold mb-2">Child's Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="Enter child's name"
                       className="w-full p-4 rounded-2xl border-2 border-blue-200 focus:border-blue-400 outline-none font-medium text-sky-900"
                     />
@@ -581,8 +760,8 @@ function Admission() {
 
                   <div>
                     <label className="block text-sky-800 font-bold mb-2">Mobile Number</label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       placeholder="Enter 10-digit number"
                       className="w-full p-4 rounded-2xl border-2 border-purple-200 focus:border-purple-400 outline-none font-medium text-sky-900"
                     />
@@ -590,8 +769,8 @@ function Admission() {
 
                   <div>
                     <label className="block text-sky-800 font-bold mb-2">Email ID</label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       placeholder="Enter your email"
                       className="w-full p-4 rounded-2xl border-2 border-orange-200 focus:border-orange-400 outline-none font-medium text-sky-900"
                     />
@@ -612,7 +791,7 @@ function Admission() {
         </section>
 
         {/* Call to Action */}
-        <section className="pt-20 px-6">
+        <section className="pt-20 px-6 bg-white">
           <motion.div
             className="max-w-4xl mx-auto bg-gradient-to-r from-green-400 to-blue-400 p-12 rounded-[4rem] shadow-2xl border-4 border-white text-center relative overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
@@ -622,7 +801,7 @@ function Admission() {
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full opacity-20 transform -translate-x-20 -translate-y-20"></div>
             <div className="absolute bottom-0 right-0 w-60 h-60 bg-white rounded-full opacity-20 transform translate-x-20 translate-y-20"></div>
-            
+
             <div className="relative z-10">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -631,14 +810,14 @@ function Admission() {
               >
                 🎉
               </motion.div>
-              
+
               <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-4">
                 Limited Seats Available!
               </h2>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
                 Don't miss the opportunity. Apply now for KG 1 and KG 2 admissions.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button
                   className="bg-white text-green-500 font-bold text-xl py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all border-4 border-white"
@@ -655,7 +834,7 @@ function Admission() {
                   Apply for KG 2 🐨
                 </motion.button>
               </div>
-              
+
               <p className="text-white mt-6 font-medium flex items-center justify-center gap-2">
                 <Flower2 size={20} />
                 Hurry! Early bird benefits ending soon
@@ -664,7 +843,7 @@ function Admission() {
             </div>
           </motion.div>
         </section>
-      </main>
+      </main >
 
       <Footer />
     </>
