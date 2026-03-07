@@ -1,17 +1,23 @@
-import PublicNavbar from "../components/PublicNavbar";
-import Middle from "../components/Middle";
-import Footer from "../components/Footer";
+import HeroSlider from "../components/home/HeroSlider";
+import AboutSection from "../components/home/AboutSection";
+import ClassesSection from "../components/home/ClassesSection";
+import FacilitiesSection from "../components/home/FacilitiesSection";
+import WhyChooseUs from "../components/home/WhyChooseUs";
+import GallerySection from "../components/home/GallerySection";
+import AdmissionCTA from "../components/home/AdmissionCTA";
 
 function Home() {
-    return (
-        <>
-            <PublicNavbar />
-            <main className="flex-grow">
-                <Middle />
-            </main>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <HeroSlider />
+      <AboutSection />
+      <ClassesSection />
+      <FacilitiesSection />
+      <WhyChooseUs />
+      <GallerySection />
+      <AdmissionCTA />
+    </>
+  );
 }
 
 export default Home;
