@@ -7,7 +7,7 @@ const RegisterHero = () => {
 
   return (
     <section
-      className="relative w-full min-h-screen overflow-hidden flex items-center justify-center"
+      className="relative w-full min-h-screen overflow-hidden flex items-center justify-center "
       style={{
         backgroundImage: `url(${loginImg})`,
         backgroundSize: "cover", // Ensures image covers the container
@@ -16,7 +16,7 @@ const RegisterHero = () => {
       }}
     >
       {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-black/20 md:bg-black/30"></div>
+      <div className="absolute inset-0 bg-black/80 md:bg-black/80"></div>
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl text-center px-4 sm:px-6 flex flex-col items-center">
