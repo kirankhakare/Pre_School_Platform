@@ -40,7 +40,7 @@ function ContactHero() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-5xl lg:text-6xl font-semibold mb-4 leading-tight">
+          <h1 className="text-5xl lg:text-6xl font-bold text-white/80 mb-4 leading-tight">
             We'd Love to
            
               Hear From You
