@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Mail, Lock, Users } from "lucide-react";
-import { Link } from "react-router-dom"; // optional if you are using react-router
+import { Mail, Lock, Users, MapPin } from "lucide-react"; // Added MapPin
+import { Link } from "react-router-dom";
 
 const RegisterForms = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -44,6 +44,20 @@ const RegisterForms = () => {
                 type="text"
                 placeholder="Enter your name"
                 className="w-full p-4 rounded-2xl border-2 border-green-200"
+              />
+            </div>
+          )}
+
+          {/* Address Field */}
+          {!isLogin && (
+            <div>
+              <label className="font-bold flex gap-2 mb-2">
+                <MapPin size={18} /> Address
+              </label>
+              <input
+                type="text"
+                placeholder="Enter your address"
+                className="w-full p-4 rounded-2xl border-2 border-gray-300"
               />
             </div>
           )}
