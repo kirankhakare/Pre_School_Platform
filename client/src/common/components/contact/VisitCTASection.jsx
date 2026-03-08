@@ -45,7 +45,7 @@ function VisitCTASection() {
             href="https://maps.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-pink-400 to-purple-400 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition"
+            className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition"
           >
             <MapPin size={20} />
             Visit Campus
@@ -54,7 +54,7 @@ function VisitCTASection() {
           {/* Call Button */}
           <a
             href="tel:+919876543210"
-            className="flex items-center justify-center gap-2  bg-gradient-to-r from-pink-400 to-purple-400 hover:bg-sky-800 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition"
+            className="flex items-center justify-center gap-2  bg-gradient-to-r from-blue-500 to-purple-600 hover:bg-sky-800 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition"
           >
             <Phone size={20} />
             Call Now
