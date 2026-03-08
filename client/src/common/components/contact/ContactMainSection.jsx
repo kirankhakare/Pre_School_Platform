@@ -88,7 +88,7 @@ function ContactMainSection() {
               {/* Button */}
               <motion.button
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-400 to-purple-400 text-white font-bold text-lg py-4 px-6 rounded-2xl shadow-lg border-4 border-white flex items-center justify-center gap-3"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-lg py-4 px-6 rounded-2xl shadow-lg border-4 border-white flex items-center justify-center gap-3"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
