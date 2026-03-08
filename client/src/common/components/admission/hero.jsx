@@ -24,8 +24,8 @@ function HeroSection() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-            Join Our Adhyayan Kids Family
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white/80 mb-6 leading-tight">
+            Join Our OctaWisdom Family
           </h1>
 
           {/* Description */}
