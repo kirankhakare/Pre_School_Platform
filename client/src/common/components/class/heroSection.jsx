@@ -44,9 +44,9 @@ function HeroSection() {
 
             A Happy Place <br />
 
-            
-              Where Little Minds Grow
-            
+
+            Where Little Minds Grow
+
 
           </h1>
 
