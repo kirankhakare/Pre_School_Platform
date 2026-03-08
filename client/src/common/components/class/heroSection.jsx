@@ -30,12 +30,12 @@ function HeroSection() {
           px-4 py-2 sm:px-6 sm:py-3 rounded-full 
           text-sm sm:text-base md:text-lg font-bold shadow-lg mb-6">
 
-            🎓 Welcome to Adhyayan Kids
+            🎓 Welcome to OctaWisdom
 
           </div>
 
           {/* Heading */}
-          <h1 className="font-bold leading-tight mb-6 
+          <h1 className="font-bold text-white/80 leading-tight mb-6 
           text-3xl
           sm:text-4xl
           md:text-5xl
@@ -44,9 +44,9 @@ function HeroSection() {
 
             A Happy Place <br />
 
-            <span className="text-white">
+            
               Where Little Minds Grow
-            </span>
+            
 
           </h1>
 
@@ -61,7 +61,7 @@ function HeroSection() {
           md:max-w-2xl
           lg:max-w-3xl">
 
-            At <span className="font-bold">Adhyayan Kids Preschool</span>,
+            At <span className="font-bold">OctaWisdom Preschool</span>,
             we nurture curiosity, creativity, and confidence through fun
             learning activities, engaging classrooms, and caring teachers
             dedicated to early childhood development.
