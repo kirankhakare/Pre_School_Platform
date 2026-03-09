@@ -33,7 +33,7 @@ export const registerUser = async (req, res) => {
             name,
             email,
             password,
-            role: role || 'admin' // Default to parent if no role is securely passed
+            role: role || 'parent' // Default to parent if no role is securely passed
         });
 
         if (user) {
