@@ -13,25 +13,20 @@ import Register from "../common/pages/Register";
 import AdminLogin from "../admin/pages/AdminLogin";
 import AdminDashboard from "../admin/pages/AdminDashboard";
 import ManageUsers from "../admin/pages/ManageUsers";
-
-import TeacherLogin from "../teacher/pages/TeacherLogin";
-import TeacherDashboard from "../teacher/pages/TeacherDashboard";
-
-import ParentLogin from "../parent/pages/ParentLogin";
-import ParentDashboard from "../parent/pages/ParentDashboard";
+import AdminLayout from "../admin/layout/AdminLayout";
 
 import ProtectedRoute from "../components/ProtectedRoute";
 
 function AppRoutes() {
+
   return (
 
     <BrowserRouter>
 
       <Routes>
 
-        {/* 🌍 PUBLIC LAYOUT */}
+        {/* PUBLIC */}
         <Route element={<PublicLayout />}>
-
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/classes" element={<Classes />} />
@@ -39,44 +34,20 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
         </Route>
 
-
-        {/* 🔐 ADMIN */}
+        {/* ADMIN LOGIN */}
         <Route path="/admin/login" element={<AdminLogin />} />
 
-        <Route path="/admin/dashboard" element={
-      
-            <AdminDashboard />
-         
-        } />
+        {/* ADMIN PANEL */}
+        <Route path="/admin" element={<AdminLayout />}>
 
-        <Route path="/admin/students/all" element={
-          <ProtectedRoute allowedRoles={['admin']}>
-            <ManageUsers />
-          </ProtectedRoute>
-        } />
+          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
 
+          <Route path="students/all" element={<ManageUsers />} />
 
-        {/* 🔐 TEACHER */}
-        <Route path="/teacher/login" element={<TeacherLogin />} />
-
-        <Route path="/teacher/dashboard" element={
-          <ProtectedRoute allowedRoles={['teacher']}>
-            <TeacherDashboard />
-          </ProtectedRoute>
-        } />
-
-
-        {/* 🔐 PARENT */}
-        <Route path="/parent/login" element={<ParentLogin />} />
-
-        <Route path="/parent/dashboard" element={
-          <ProtectedRoute allowedRoles={['parent']}>
-            <ParentDashboard />
-          </ProtectedRoute>
-        } />
+        </Route>
 
       </Routes>
 
