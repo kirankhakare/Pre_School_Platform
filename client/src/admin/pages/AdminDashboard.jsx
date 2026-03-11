@@ -1,6 +1,3 @@
-import { useState } from "react";
-import AdminSidebar from "../components/AdminSidebar";
-
 import DashboardHeader from "../components/AdminDashboard/DashboardHeader";
 import StatsCards from "../components/AdminDashboard/StatsCards";
 import ClassDistribution from "../components/AdminDashboard/ClassDistribution";
@@ -11,38 +8,23 @@ import QuickActions from "../components/AdminDashboard/QuickAction";
 
 function AdminDashboard() {
 
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
-    <div className="bg-sky-50 min-h-screen">
+    <div>
 
-      <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      <DashboardHeader />
+      <StatsCards />
 
-      <main
-        className={`
-  min-h-screen overflow-y-auto
-  pt-6 px-4 lg:px-8
-  transition-all duration-200
-  ${collapsed ? "lg:ml-20" : "lg:ml-72"}
-  `}
-      >
+      <div className="grid lg:grid-cols-2 gap-6 mb-8">
+        <ClassDistribution />
+        <RecentActivities />
+      </div>
 
-        <DashboardHeader />
-        <StatsCards />
+      <div className="grid lg:grid-cols-2 gap-6">
+        <UpcomingEvents />
+        <FeeSummary />
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
-          <ClassDistribution />
-          <RecentActivities />
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-6">
-          <UpcomingEvents />
-          <FeeSummary />
-        </div>
-
-        <QuickActions />
-
-      </main>
+      <QuickActions />
 
     </div>
   );
