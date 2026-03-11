@@ -95,31 +95,21 @@ function AdminSidebar({ collapsed, setCollapsed }) {
       {/* Sidebar */}
       <aside
         className={`
-  ${collapsed ? "w-20" : "w-72"}
-  bg-sky-50 border-r-4 border-amber-500
-  fixed top-0 left-0
-  h-screen
-  shadow-xl
-  flex flex-col
-  z-50
-  transform transition-all duration-200
-  ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
-  lg:translate-x-0
-  `}
+        fixed top-0 left-0 h-screen
+        ${collapsed ? "w-20" : "w-72"}
+        bg-sky-50 border-r-4 border-amber-500
+        shadow-xl flex flex-col
+        z-50 transition-all duration-200
+        ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
+        lg:translate-x-0
+        `}
       >
-
-        {/* Mobile Close */}
-        <div className="lg:hidden flex justify-end p-4">
-          <button onClick={() => setMobileOpen(false)}>
-            <X size={24} />
-          </button>
-        </div>
 
         {/* Logo */}
         <div className="p-6 border-b-4 border-amber-500 flex items-center">
 
           <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow">
-            <img src="/logo.jpeg" alt="logo" className="w-9" />
+            <img src="/logo.jpeg" alt="logo" className="w-9"/>
           </div>
 
           {!collapsed && (
@@ -129,12 +119,11 @@ function AdminSidebar({ collapsed, setCollapsed }) {
             </div>
           )}
 
-          {/* Desktop Toggle */}
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="ml-auto hidden lg:block p-2 rounded hover:bg-sky-100"
+            className="ml-auto hidden lg:block p-2"
           >
-            {collapsed ? <Menu size={18} /> : <X size={18} />}
+            {collapsed ? <Menu size={18}/> : <X size={18}/>}
           </button>
 
         </div>
@@ -157,17 +146,17 @@ function AdminSidebar({ collapsed, setCollapsed }) {
                     }
                     className="w-full flex justify-between items-center p-3 rounded-xl font-semibold text-sky-800 hover:bg-sky-100"
                   >
-
-                    <div className="flex gap-3 items-center">
+                    <div className="flex items-center gap-3">
                       {item.icon}
                       {item.label}
                     </div>
 
-                    <ChevronDown size={18} />
-
+                    <ChevronDown size={18}/>
                   </button>
 
-                  {(item.label === "Student Management" ? studentsOpen : teachersOpen) && (
+                  {(item.label === "Student Management"
+                    ? studentsOpen
+                    : teachersOpen) && (
 
                     <div className="ml-6 mt-2 space-y-1">
 
@@ -176,10 +165,11 @@ function AdminSidebar({ collapsed, setCollapsed }) {
                         <NavLink
                           key={i}
                           to={sub.path}
-                          onClick={() => setMobileOpen(false)}
                           className={({ isActive }) =>
                             `flex items-center gap-3 p-2 rounded-lg
-                            ${isActive ? "bg-amber-500 text-white" : "hover:bg-sky-100"}`
+                            ${isActive
+                              ? "bg-amber-500 text-white"
+                              : "hover:bg-sky-100"}`
                           }
                         >
                           <span>{sub.icon}</span>
@@ -197,12 +187,13 @@ function AdminSidebar({ collapsed, setCollapsed }) {
               ) : (
 
                 <NavLink
-                  to={item.path || "#"}
-                  onClick={() => setMobileOpen(false)}
+                  to={item.path}
                   className={({ isActive }) =>
                     `flex items-center p-3 rounded-xl font-semibold
                     ${collapsed ? "justify-center" : "gap-3"}
-                    ${isActive ? "bg-sky-800 text-white" : "text-sky-800 hover:bg-sky-100"}`
+                    ${isActive
+                      ? "bg-sky-800 text-white"
+                      : "text-sky-800 hover:bg-sky-100"}`
                   }
                 >
                   {item.icon}
@@ -217,32 +208,14 @@ function AdminSidebar({ collapsed, setCollapsed }) {
 
         </nav>
 
-        {/* Logout */}
-        <div className="p-4">
-
-          <button
-            className={`w-full flex items-center p-3 rounded-xl text-red-500 hover:bg-red-50 font-semibold
-            ${collapsed ? "justify-center" : "gap-3"}`}
-          >
-            <LogOut size={22} />
-            {!collapsed && "Logout"}
-          </button>
-
-        </div>
-
         {/* Footer */}
         {!collapsed && (
-
           <div className="p-4 border-t-4 border-amber-500 flex items-center gap-2">
-
-            <Baby size={18} className="text-sky-500" />
-
+            <Baby size={18} className="text-sky-500"/>
             <p className="text-xs font-bold text-sky-800">
               KG1 & KG2 Management
             </p>
-
           </div>
-
         )}
 
       </aside>
