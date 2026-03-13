@@ -16,6 +16,10 @@ import ManageUsers from "../admin/pages/ManageUsers";
 import AdminLayout from "../admin/layout/AdminLayout";
 
 import ProtectedRoute from "../components/ProtectedRoute";
+import Kg1Student from "../admin/pages/Kg1Student";
+import Kg2Student from "../admin/pages/Kg2Student";
+import StudentsAdd from "../admin/pages/StudentsAdd";
+
 
 function AppRoutes() {
 
@@ -46,6 +50,14 @@ function AppRoutes() {
           <Route path="dashboard" element={<AdminDashboard />} />
 
           <Route path="students/all" element={<ManageUsers />} />
+
+           <Route path="students/kg1" element={<Kg1Student />} />
+
+            <Route path="students/kg2" element={<Kg2Student />} />
+
+             <Route path="students/add" element={<StudentsAdd/>} />
+
+          
 
         </Route>
 
