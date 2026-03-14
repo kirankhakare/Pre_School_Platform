@@ -168,8 +168,8 @@ function AdminSidebar({ collapsed, setCollapsed }) {
                           className={({ isActive }) =>
                             `flex items-center gap-3 p-2 rounded-lg
                             ${isActive
-                              ? "bg-amber-500 text-white"
-                              : "hover:bg-sky-100"}`
+                              ? "bg-sky-800 text-white"
+                              : "hover:bg-sky-100 text-sky-800"}`
                           }
                         >
                           <span>{sub.icon}</span>
