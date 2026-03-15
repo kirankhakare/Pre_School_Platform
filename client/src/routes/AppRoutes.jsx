@@ -59,7 +59,7 @@ function AppRoutes() {
 
           <Route path="teacher" element={<TeacherManagement />} />
 
-          <Route path="class" element={<ClassManagement />} />
+          <Route path="classes" element={<ClassManagement />} />
 
           <Route path="fees" element={<FeeMangement />} />
 
