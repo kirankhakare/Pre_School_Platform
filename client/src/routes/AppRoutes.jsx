@@ -12,7 +12,6 @@ import Register from "../common/pages/Register";
 
 import AdminLogin from "../admin/pages/AdminLogin";
 import AdminDashboard from "../admin/pages/AdminDashboard";
-import ManageUsers from "../admin/pages/ManageUsers";
 import AdminLayout from "../admin/layout/AdminLayout";
 
 import ProtectedRoute from "../components/ProtectedRoute";
