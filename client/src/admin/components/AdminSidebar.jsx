@@ -8,9 +8,7 @@ import {
   Megaphone,
   Images,
   Settings,
-  LogOut,
   Baby,
-  ChevronDown,
   Menu,
   X
 } from "lucide-react";
@@ -19,8 +17,6 @@ import { useState } from "react";
 function AdminSidebar({ collapsed, setCollapsed }) {
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [studentsOpen, setStudentsOpen] = useState(false);
-  const [teachersOpen, setTeachersOpen] = useState(false);
 
   const menuItems = [
     {
@@ -29,23 +25,14 @@ function AdminSidebar({ collapsed, setCollapsed }) {
       label: "Dashboard"
     },
     {
+      path: "/admin/student",
       icon: <Users size={22} />,
-      label: "Student Management",
-      submenu: [
-        { path: "/admin/students/kg1", label: "KG 1 Students", icon: "🐼" },
-        { path: "/admin/students/kg2", label: "KG 2 Students", icon: "🐨" },
-        { path: "/admin/students/all", label: "All Students", icon: "👥" },
-        { path: "/admin/students/add", label: "Add Student", icon: "➕" }
-      ]
+      label: "Student Management"
     },
     {
+      path: "/admin/teacher",
       icon: <GraduationCap size={22} />,
-      label: "Teacher Management",
-      submenu: [
-        { path: "/admin/teachers/all", label: "All Teachers", icon: "👩‍🏫" },
-        { path: "/admin/teachers/add", label: "Add Teacher", icon: "➕" },
-        { path: "/admin/teachers/assign", label: "Assign Class", icon: "📋" }
-      ]
+      label: "Teacher Management"
     },
     {
       path: "/admin/classes",
@@ -99,7 +86,7 @@ function AdminSidebar({ collapsed, setCollapsed }) {
         ${collapsed ? "w-20" : "w-72"}
         bg-sky-50 border-r-4 border-amber-500
         shadow-xl flex flex-col
-        z-50 transition-all duration-200
+        z-50 transition-all duration-300
         ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0
         `}
@@ -109,7 +96,7 @@ function AdminSidebar({ collapsed, setCollapsed }) {
         <div className="p-6 border-b-4 border-amber-500 flex items-center">
 
           <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow">
-            <img src="/logo.jpeg" alt="logo" className="w-9"/>
+            <img src="/logo.jpeg" alt="logo" className="w-9" />
           </div>
 
           {!collapsed && (
@@ -123,7 +110,7 @@ function AdminSidebar({ collapsed, setCollapsed }) {
             onClick={() => setCollapsed(!collapsed)}
             className="ml-auto hidden lg:block p-2"
           >
-            {collapsed ? <Menu size={18}/> : <X size={18}/>}
+            {collapsed ? <Menu size={18} /> : <X size={18} />}
           </button>
 
         </div>
@@ -133,76 +120,22 @@ function AdminSidebar({ collapsed, setCollapsed }) {
 
           {menuItems.map((item, index) => (
 
-            <div key={index}>
-
-              {item.submenu && !collapsed ? (
-
-                <>
-                  <button
-                    onClick={() =>
-                      item.label === "Student Management"
-                        ? setStudentsOpen(!studentsOpen)
-                        : setTeachersOpen(!teachersOpen)
-                    }
-                    className="w-full flex justify-between items-center p-3 rounded-xl font-semibold text-sky-800 hover:bg-sky-100"
-                  >
-                    <div className="flex items-center gap-3">
-                      {item.icon}
-                      {item.label}
-                    </div>
-
-                    <ChevronDown size={18}/>
-                  </button>
-
-                  {(item.label === "Student Management"
-                    ? studentsOpen
-                    : teachersOpen) && (
-
-                    <div className="ml-6 mt-2 space-y-1">
-
-                      {item.submenu.map((sub, i) => (
-
-                        <NavLink
-                          key={i}
-                          to={sub.path}
-                          className={({ isActive }) =>
-                            `flex items-center gap-3 p-2 rounded-lg
-                            ${isActive
-                              ? "bg-sky-800 text-white"
-                              : "hover:bg-sky-100 text-sky-800"}`
-                          }
-                        >
-                          <span>{sub.icon}</span>
-                          {sub.label}
-                        </NavLink>
-
-                      ))}
-
-                    </div>
-
-                  )}
-
-                </>
-
-              ) : (
-
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `flex items-center p-3 rounded-xl font-semibold
-                    ${collapsed ? "justify-center" : "gap-3"}
-                    ${isActive
-                      ? "bg-sky-800 text-white"
-                      : "text-sky-800 hover:bg-sky-100"}`
-                  }
-                >
-                  {item.icon}
-                  {!collapsed && item.label}
-                </NavLink>
-
-              )}
-
-            </div>
+            <NavLink
+              key={index}
+              to={item.path}
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-xl font-semibold transition
+                ${collapsed ? "justify-center" : "gap-3"}
+                ${
+                  isActive
+                    ? "bg-sky-800 text-white"
+                    : "text-sky-800 hover:bg-sky-100"
+                }`
+              }
+            >
+              {item.icon}
+              {!collapsed && item.label}
+            </NavLink>
 
           ))}
 
@@ -211,7 +144,7 @@ function AdminSidebar({ collapsed, setCollapsed }) {
         {/* Footer */}
         {!collapsed && (
           <div className="p-4 border-t-4 border-amber-500 flex items-center gap-2">
-            <Baby size={18} className="text-sky-500"/>
+            <Baby size={18} className="text-sky-500" />
             <p className="text-xs font-bold text-sky-800">
               KG1 & KG2 Management
             </p>
