@@ -1,203 +1,409 @@
 import PublicNavbar from "../components/PublicNavbar";
-import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { CheckCircle2, Star, Target, ShieldCheck, Heart, Home, Video, Trees, Palette, Book, HeartPulse } from "lucide-react";
+import {
+  CheckCircle2,
+  Star,
+  Target,
+  ShieldCheck,
+  Home,
+  Video,
+  Trees,
+  Palette,
+  Book,
+  HeartPulse,
+  Users,
+  Smile,
+  Clock,
+  Award,
+  Quote,
+} from "lucide-react";
 
 function About() {
   const facilities = [
     {
-      icon: <Home size={24} className="text-green-600" />,
+      icon: <Home size={24} className="text-[#E87D1E]" />,
       title: "Safe Classrooms",
-      description: "Well-ventilated, clean, and child-friendly classrooms designed for safety and comfort."
+      description:
+        "Well-ventilated, clean, and child-friendly classrooms designed for safety and comfort.",
     },
     {
-      icon: <Video size={24} className="text-green-600" />,
+      icon: <Video size={24} className="text-[#E87D1E]" />,
       title: "24/7 CCTV Security",
-      description: "Continuous monitoring ensures your child’s safety at all times."
+      description:
+        "Continuous monitoring ensures your child’s safety at all times.",
     },
     {
-      icon: <Trees size={24} className="text-green-600" />,
+      icon: <Trees size={24} className="text-[#E87D1E]" />,
       title: "Outdoor Play Area",
-      description: "Spacious, secure playgrounds for physical development and fun activities."
+      description:
+        "Spacious playgrounds for physical development and fun activities.",
     },
     {
-      icon: <Palette size={24} className="text-green-600" />,
-      title: "Activity & Art Room",
-      description: "Rooms equipped with art and craft materials to encourage creativity."
+      icon: <Palette size={24} className="text-[#E87D1E]" />,
+      title: "Art & Activity Room",
+      description:
+        "Special rooms equipped with materials that encourage creativity.",
     },
     {
-      icon: <Book size={24} className="text-green-600" />,
+      icon: <Book size={24} className="text-[#E87D1E]" />,
       title: "Kids Library",
-      description: "A cozy library with age-appropriate books to develop early reading habits."
+      description:
+        "Age-appropriate books that help develop early reading habits.",
     },
     {
-      icon: <HeartPulse size={24} className="text-green-600" />,
+      icon: <HeartPulse size={24} className="text-[#E87D1E]" />,
       title: "First Aid Ready",
-      description: "Trained staff and first aid kits available for any minor emergencies."
+      description:
+        "Trained staff and first aid kits available for emergencies.",
     },
     {
-      icon: <ShieldCheck size={24} className="text-green-600" />,
+      icon: <ShieldCheck size={24} className="text-[#E87D1E]" />,
       title: "Clean Washrooms",
-      description: "Hygienic and regularly sanitized washrooms designed for young children."
-    }
+      description:
+        "Hygienic and regularly sanitized washrooms designed for children.",
+    },
+  ];
+
+  const stats = [
+    { icon: <Users size={32} />, value: "500+", label: "Happy Children" },
+    { icon: <Smile size={32} />, value: "50+", label: "Qualified Staff" },
+    { icon: <Clock size={32} />, value: "10+", label: "Years of Excellence" },
+    { icon: <Award size={32} />, value: "100%", label: "Parent Satisfaction" },
+  ];
+
+  const approaches = [
+    {
+      title: "Play-Based Learning",
+      description:
+        "We believe children learn best through play. Our curriculum integrates fun activities with educational goals.",
+    },
+    {
+      title: "Holistic Development",
+      description:
+        "Focus on cognitive, social, emotional, and physical growth through a balanced daily routine.",
+    },
+    {
+      title: "Individual Attention",
+      description:
+        "Low teacher-student ratios ensure every child gets the guidance and care they deserve.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Priya Sharma",
+      role: "Parent of Aryan (Age 4)",
+      quote:
+        "OctaWisdom has been a second home for my son. The teachers are caring and the facilities are top-notch. He looks forward to going to school every day!",
+    },
+    {
+      name: "Rahul Deshmukh",
+      role: "Parent of Kiara (Age 3)",
+      quote:
+        "The progress I've seen in my daughter's confidence and communication skills is remarkable. Thank you, OctaWisdom team!",
+    },
+  ];
+
+  const team = [
+    {
+      name: "Mrs. Sunita Patil",
+      role: "Founder & Director",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80",
+    },
+    {
+      name: "Ms. Anjali Rao",
+      role: "Head of Curriculum",
+      image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=300&q=80",
+    },
+    {
+      name: "Mr. Vikram Joshi",
+      role: "Activity Coordinator",
+      image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=300&q=80",
+    },
   ];
 
   return (
     <>
       <PublicNavbar />
-      <main className="pt-24 bg-white pb-20">
+      <main className="bg-white">
+        {/* HERO */}
+        <section className="relative h-[500px] flex items-center justify-center text-white">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=80')",
+            }}
+          >
+            <div className="absolute inset-0 bg-[#2F4C92]/70" />
+          </div>
+          <motion.div
+            className="relative z-10 text-center px-6 max-w-3xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+              Welcome to OctaWisdom
+            </h1>
+            <p className="text-xl md:text-2xl">
+              Where every child's potential is nurtured with love, care, and
+              creativity.
+            </p>
+          </motion.div>
+        </section>
 
-        {/* 1. School Introduction */}
-        <section className="py-20 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-12">
+        {/* INTRO */}
+        <section className="py-20 px-6 max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center">
           <motion.div
             className="flex-1 space-y-6"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl lg:text-5xl font-extrabold text-sky-900 leading-tight">
-              Welcome to, <br />OctaWisdom Preschool
-            </h1>
-            <p className="text-xl text-black font-medium leading-relaxed">
-              Located in Yashoda Nagar, Amravati, OctaWisdom Preschool is dedicated to nurturing young minds through joyful learning, creativity, and holistic development. We provide a safe, caring, and stimulating environment where every child can thrive.
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#2F4C92] leading-tight">
+              About Our Preschool
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Located in Yashoda Nagar, Amravati, OctaWisdom Preschool is
+              dedicated to nurturing young minds through joyful learning,
+              creativity and holistic development. We provide a safe, caring
+              environment where every child can thrive.
             </p>
           </motion.div>
-
           <motion.div
-            className="flex-1 relative w-full max-w-lg"
-            initial={{ opacity: 0, scale: 0.8 }}
+            className="flex-1 w-full max-w-lg"
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, type: "spring" }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-8 border-white rotate-2 hover:rotate-0 transition-transform duration-300">
-              <img src="https://images.unsplash.com/photo-1587691592099-24045742c181?q=80&w=800&auto=format&fit=crop" alt="Kids at school" className="w-full h-full object-cover" />
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+              <img
+                src="https://images.unsplash.com/photo-1587691592099-24045742c181?auto=format&fit=crop&w=800&q=80"
+                alt="Children playing with colorful toys"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </motion.div>
         </section>
 
-        {/* 2. Mission & Vision */}
-        <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
-          <motion.div
-            className="bg-blue-50 p-10 rounded-3xl border-2 border-blue-100 shadow-sm"
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Star size={32} className="text-orange-500" />
-              <h2 className="text-3xl font-extrabold text-sky-900">Our Vision</h2>
-            </div>
-            <p className="text-sky-700 mb-6">To build a strong foundation and create confident, curious learners who are ready to explore the world.</p>
-            <ul className="space-y-3 text-sky-700 font-bold">
-              <li className="flex items-center gap-2"><CheckCircle2 size={20} className="text-orange-500" /> Develop Creativity</li>
-              <li className="flex items-center gap-2"><CheckCircle2 size={20} className="text-orange-500" /> Encourage Curiosity</li>
-              <li className="flex items-center gap-2"><CheckCircle2 size={20} className="text-orange-500" /> Build Strong Foundations</li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            className="bg-blue-50 p-10 rounded-3xl border-2 border-blue-100 shadow-sm"
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Target size={32} className="text-blue-500" />
-              <h2 className="text-3xl font-extrabold text-sky-900">Our Mission</h2>
-            </div>
-            <p className="text-sky-700 mb-6">Achieving excellence through play-based learning, experienced teachers, and holistic individual growth.</p>
-            <ul className="space-y-3 text-sky-700 font-bold">
-              <li className="flex items-center gap-2"><CheckCircle2 size={20} className="text-blue-500" /> Experienced Teachers</li>
-              <li className="flex items-center gap-2"><CheckCircle2 size={20} className="text-blue-500" /> Safe Environment</li>
-              <li className="flex items-center gap-2"><CheckCircle2 size={20} className="text-blue-500" /> Individual Attention</li>
-            </ul>
-          </motion.div>
-        </section>
-
-        {/* 3. Highlights */}
-        <section className="py-20 px-6 max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-extrabold text-sky-900 mb-8">What We Offer</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 ">
-            {[
-              { emoji: "🎨", title: "Creative Learning" },
-              { emoji: "👩‍🏫", title: "Experienced Teachers" },
-              { emoji: "🧩", title: "Activity-Based Curriculum" },
-              { emoji: "🌱", title: "Child Development Focus" },
-            ].map((item, i) => (
+        {/* STATS */}
+        <section className="py-16 bg-[#FFF3E6]">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
               <motion.div
-                key={i} className="bg-blue-50 p-8 rounded-3xl flex flex-col items-center justify-center gap-4 border border-sky-100 shadow-sm hover:shadow-md transition-shadow"
-                initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <span className="text-5xl">{item.emoji}</span>
-                <h3 className="text-lg font-bold text-sky-900">{item.title}</h3>
+                <div className="text-[#E87D1E] flex justify-center mb-2">
+                  {stat.icon}
+                </div>
+                <div className="text-3xl font-bold text-[#2F4C92]">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600">{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* 4. Top Facilities */}
+        {/* VISION MISSION */}
+        <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
+          <motion.div
+            className="bg-gray-50 p-10 rounded-3xl shadow-md hover:shadow-xl transition"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <Star size={30} className="text-[#E87D1E]" />
+              <h2 className="text-3xl font-bold text-[#2F4C92]">Our Vision</h2>
+            </div>
+            <p className="text-gray-700 mb-6">
+              To build a strong foundation and create confident learners ready
+              to explore the world.
+            </p>
+            <ul className="space-y-3 text-gray-700 font-semibold">
+              <li className="flex gap-2">
+                <CheckCircle2 className="text-[#E87D1E]" /> Develop Creativity
+              </li>
+              <li className="flex gap-2">
+                <CheckCircle2 className="text-[#E87D1E]" /> Encourage Curiosity
+              </li>
+              <li className="flex gap-2">
+                <CheckCircle2 className="text-[#E87D1E]" /> Build Strong
+                Foundations
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            className="bg-gray-50 p-10 rounded-3xl shadow-md hover:shadow-xl transition"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <Target size={30} className="text-[#E87D1E]" />
+              <h2 className="text-3xl font-bold text-[#2F4C92]">Our Mission</h2>
+            </div>
+            <p className="text-gray-700 mb-6">
+              Achieving excellence through play-based learning, experienced
+              teachers and holistic growth.
+            </p>
+            <ul className="space-y-3 text-gray-700 font-semibold">
+              <li className="flex gap-2">
+                <CheckCircle2 className="text-[#E87D1E]" /> Experienced Teachers
+              </li>
+              <li className="flex gap-2">
+                <CheckCircle2 className="text-[#E87D1E]" /> Safe Environment
+              </li>
+              <li className="flex gap-2">
+                <CheckCircle2 className="text-[#E87D1E]" /> Individual Attention
+              </li>
+            </ul>
+          </motion.div>
+        </section>
+
+        {/* OUR APPROACH */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-[#2F4C92]">Our Approach</h2>
+              <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+                We combine modern teaching methods with traditional values to
+                create a nurturing learning environment.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {approaches.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gray-50 p-8 rounded-2xl shadow-lg text-center"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <h3 className="text-xl font-bold text-[#2F4C92] mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FACILITIES */}
         <section className="py-20 px-6 max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-extrabold text-sky-900 mb-4 flex items-center justify-center gap-3">
-              <ShieldCheck className="text-green-500" size={36} /> Top Facilities
-            </h2>
-            <p className="text-sky-700 text-lg max-w-2xl mx-auto">
-              We provide a safe, modern, and fun environment where children can learn, play, and grow every day.
+            <h2 className="text-4xl font-bold text-[#2F4C92]">Our Facilities</h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              A safe, modern and fun environment where children can learn and
+              grow every day.
             </p>
           </div>
-
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
             {facilities.map((fac, i) => (
               <motion.div
                 key={i}
-                className="bg-blue-50 p-6 rounded-2xl shadow-md border border-sky-100 flex flex-col gap-4 hover:shadow-lg transition-shadow"
+                className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
               >
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-2">
+                <div className="w-12 h-12 bg-[#FFF3E6] flex items-center justify-center rounded-full mb-4">
                   {fac.icon}
                 </div>
-                <h3 className="text-lg font-bold text-sky-900">{fac.title}</h3>
-                <p className="text-sky-700 text-sm">{fac.description}</p>
+                <h3 className="text-lg font-bold text-[#2F4C92] mb-2">
+                  {fac.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{fac.description}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Core Values */}
-        <section className="py-20 px-6 max-w-7xl mx-auto">
-          <h2 className="text-4xl font-extrabold text-sky-900 mb-6 flex items-center justify-center gap-3">
-            Our Core Values
-          </h2>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { title: "Safety First", emoji: "🛡️" },
-              { title: "Respect", emoji: "🤝" },
-              { title: "Creativity", emoji: "🎨" },
-              { title: "Love & Care", emoji: "💖" },
-              { title: "Discipline", emoji: "🚦" },
-              { title: "Inclusiveness", emoji: "🌍" },
-            ].map((val, i) => (
-              <motion.div key={i} className="bg-blue-50 p-5 rounded-2xl flex flex-col items-center text-center justify-center gap-2 border border-sky-100 shadow-sm"
-                initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              >
-                <span className="text-3xl">{val.emoji}</span>
-                <span className="font-bold text-sky-800">{val.title}</span>
-              </motion.div>
-            ))}
+        {/* MEET THE TEAM */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-[#2F4C92]">Meet Our Team</h2>
+              <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+                Passionate educators dedicated to your child's growth.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {team.map((member, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-64 object-cover"
+                    loading="lazy"
+                  />
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-bold text-[#2F4C92]">
+                      {member.name}
+                    </h3>
+                    <p className="text-[#E87D1E]">{member.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-[#2F4C92]">What Parents Say</h2>
+              <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+                Hear from families who trust us with their little ones.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gray-50 p-8 rounded-2xl shadow-md relative"
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                >
+                  <Quote className="text-[#E87D1E] absolute top-4 right-4 opacity-20" size={40} />
+                  <p className="text-gray-700 italic mb-4">"{testimonial.quote}"</p>
+                  <div>
+                    <p className="font-bold text-[#2F4C92]">{testimonial.name}</p>
+                    <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-6 max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-extrabold text-sky-900 mb-4">Join Our Family</h2>
-          <p className="text-xl text-sky-700 font-medium mb-8">Secure your child's spot for the upcoming academic year at OctaWisdom Preschool.</p>
-          <button className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold shadow-md transition">
-            Apply for Admission Now.
+        <section className="py-20 text-center bg-[#2F4C92] text-white">
+          <h2 className="text-4xl font-bold mb-4">Join Our Family</h2>
+          <p className="text-lg mb-8">
+            Secure your child's spot for the upcoming academic year.
+          </p>
+          <button className="bg-[#E87D1E] hover:bg-[#cf6b14] px-8 py-3 rounded-full font-semibold shadow-lg transition transform hover:scale-105">
+            Apply for Admission
           </button>
         </section>
-
       </main>
-
-      <Footer />
     </>
   );
 }

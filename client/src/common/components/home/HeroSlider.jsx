@@ -45,54 +45,55 @@ function HeroSlider() {
   ];
 
   return (
-    <section className="relative h-screen w-full">
+    <section className="relative h-[90vh] md:h-screen w-full">
 
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
-        autoplay={{ delay: 4000 }}
+        autoplay={{ delay: 4500 }}
         pagination={{ clickable: true }}
         navigation
         loop
         className="h-full"
       >
+
         {slides.map((slide, index) => (
 
           <SwiperSlide key={index}>
 
             <div
-              className="relative h-screen bg-cover bg-center flex items-center"
+              className="relative h-full bg-cover bg-center flex items-center"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
 
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-black/50"></div>
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/55"></div>
 
               {/* Content */}
-              <div className="relative z-10 max-w-7xl mx-auto px-6">
+              <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
 
                 <div className="max-w-xl text-white">
 
                   {/* Label */}
-                  <p className="text-sm md:text-base bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full inline-block mb-6">
+                  <p className="text-xs md:text-sm bg-white/20 backdrop-blur-md px-4 py-1 rounded-full inline-block mb-5">
                     {slide.label}
                   </p>
 
-                  {/* Heading */}
-                  <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                  {/* Title */}
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
                     {slide.title}
                   </h1>
 
                   {/* Subtitle */}
-                  <p className="mt-6 text-lg text-gray-200">
+                  <p className="mt-5 text-base md:text-lg text-gray-200 leading-relaxed">
                     {slide.subtitle}
                   </p>
 
                   {/* Button */}
                   <button
                     onClick={() => navigate(slide.link)}
-                    className="mt-8 px-8 py-3 rounded-full text-white font-semibold 
-                    bg-gradient-to-r from-blue-500 to-purple-600
-                    hover:scale-105 transition shadow-lg"
+                    className="mt-8 px-7 py-3 rounded-full text-white font-semibold
+                    bg-[#E87D1E] hover:bg-[#cf6b14]
+                    transition-all duration-300 shadow-lg hover:scale-105"
                   >
                     {slide.button}
                   </button>
@@ -106,6 +107,7 @@ function HeroSlider() {
           </SwiperSlide>
 
         ))}
+
       </Swiper>
 
     </section>

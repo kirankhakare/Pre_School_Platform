@@ -1,85 +1,113 @@
-
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { HelpCircle, ChevronDown } from "lucide-react";
 
 function FAQSection() {
+
+  const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
       question: "What is the ideal age for KG 1 admission?",
-      answer: "Children between 3.5 to 4.5 years as of 31st March are eligible for KG 1 admission.",
-      icon: "❓"
+      answer:
+        "Children between 3.5 to 4.5 years as of 31st March are eligible for KG 1 admission.",
     },
     {
       question: "Is there any admission test?",
-      answer: "No, we conduct a friendly interaction session to understand the child's comfort level.",
-      icon: "❓"
+      answer:
+        "No, we conduct a friendly interaction session to understand the child's comfort level.",
     },
     {
       question: "What is the student-teacher ratio?",
-      answer: "We maintain a 15:1 student-teacher ratio for personalized attention.",
-      icon: "❓"
+      answer:
+        "We maintain a 15:1 student-teacher ratio to ensure personal attention for every child.",
     },
     {
       question: "Are parents allowed during the first few days?",
-      answer: "Yes, we have a gradual settling program where parents can stay with the child initially.",
-      icon: "❓"
+      answer:
+        "Yes, we follow a gradual settling program where parents can stay with the child initially.",
     },
   ];
 
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <section className="py-20 px-6 bg-white">
+
+    <section className="py-20 px-6 bg-gray-50">
 
       <div className="max-w-4xl mx-auto">
 
         {/* Heading */}
+
         <motion.h2
-          className="text-4xl font-extrabold text-sky-900 text-center mb-4"
+          className="text-3xl md:text-4xl font-bold text-[#2F4C92] text-center mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           Frequently Asked Questions
         </motion.h2>
 
         <motion.p
-          className="text-xl text-sky-700 text-center mb-16"
+          className="text-gray-600 text-center mb-14"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
         >
-          Everything you need to know about KG admissions
+          Everything you need to know about admissions
         </motion.p>
 
-        {/* FAQ Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+        {/* FAQ List */}
+
+        <div className="space-y-4">
 
           {faqs.map((faq, i) => (
 
             <motion.div
               key={i}
-              className="bg-white p-6 rounded-2xl shadow-md border-2 border-purple-100 hover:border-purple-300 transition-colors cursor-pointer"
+              className="bg-white rounded-xl shadow-md border"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ scale: 1.02, x: 10 }}
             >
 
-              <div className="flex items-start gap-4">
+              {/* Question */}
 
-                <span className="text-2xl">{faq.icon}</span>
+              <button
+                onClick={() => toggleFAQ(i)}
+                className="w-full flex justify-between items-center text-left p-5"
+              >
 
-                <div>
-                  <h3 className="text-lg font-bold text-sky-900 mb-2">
+                <div className="flex items-center gap-3">
+
+                  <HelpCircle className="text-[#E87D1E]" />
+
+                  <span className="font-semibold text-[#2F4C92]">
                     {faq.question}
-                  </h3>
+                  </span>
 
-                  <p className="text-sky-600">
-                    {faq.answer}
-                  </p>
                 </div>
 
-              </div>
+                <ChevronDown
+                  className={`transition-transform ${
+                    openIndex === i ? "rotate-180" : ""
+                  }`}
+                />
+
+              </button>
+
+              {/* Answer */}
+
+              {openIndex === i && (
+
+                <motion.div
+                  className="px-5 pb-5 text-gray-600"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  {faq.answer}
+                </motion.div>
+
+              )}
 
             </motion.div>
 
@@ -90,8 +118,8 @@ function FAQSection() {
       </div>
 
     </section>
+
   );
 }
 
 export default FAQSection;
-

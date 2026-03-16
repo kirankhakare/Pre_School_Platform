@@ -9,6 +9,7 @@ import Admission from "../common/pages/Admission";
 import Contact from "../common/pages/Contact";
 import PrivacyPolicy from "../common/pages/PrivacyPolicy";
 import Register from "../common/pages/Register";
+import Gallery from "../common/pages/Gallery";
 
 import AdminLogin from "../admin/pages/AdminLogin";
 import AdminDashboard from "../admin/pages/AdminDashboard";
@@ -43,6 +44,7 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="common-gallery" element={<Gallery/>} />
         </Route>
 
         {/* ADMIN LOGIN */}
