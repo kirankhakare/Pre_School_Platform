@@ -1,34 +1,31 @@
-
 import { motion } from "framer-motion";
 import { MapPin, Phone } from "lucide-react";
 
 function VisitCTASection() {
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section className="py-20 px-6 bg-gray-50">
 
-      <div className="max-w-5xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto text-center">
 
         {/* Title */}
         <motion.h2
-          className="text-3xl md:text-4xl font-extrabold text-sky-900 mb-4"
+          className="text-3xl md:text-4xl font-bold text-[#2F4C92] mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           Come Visit Our School! 🏫
         </motion.h2>
 
         {/* Subtitle */}
         <motion.p
-          className="text-sky-700 max-w-xl mx-auto mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          className="text-gray-600 max-w-xl mx-auto mb-10"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
         >
           We would love to welcome you and your child to our joyful learning
-          environment. Visit our campus and see the magic of early education.
+          environment. Visit our campus and experience the magic of early
+          education.
         </motion.p>
 
         {/* Buttons */}
@@ -36,8 +33,6 @@ function VisitCTASection() {
           className="flex flex-col sm:flex-row justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
         >
 
           {/* Visit Button */}
@@ -45,7 +40,7 @@ function VisitCTASection() {
             href="https://maps.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition"
+            className="flex items-center justify-center gap-2 bg-[#2F4C92] hover:bg-[#1e3572] text-white font-semibold px-6 py-3 rounded-xl shadow-md transition"
           >
             <MapPin size={20} />
             Visit Campus
@@ -53,8 +48,8 @@ function VisitCTASection() {
 
           {/* Call Button */}
           <a
-            href="tel:+919876543210"
-            className="flex items-center justify-center gap-2  bg-gradient-to-r from-blue-500 to-purple-600 hover:bg-sky-800 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition"
+            href="tel:+918767192113"
+            className="flex items-center justify-center gap-2 border-2 border-[#E87D1E] text-[#E87D1E] hover:bg-[#E87D1E] hover:text-white font-semibold px-6 py-3 rounded-xl transition"
           >
             <Phone size={20} />
             Call Now
@@ -62,15 +57,13 @@ function VisitCTASection() {
 
         </motion.div>
 
-        {/* Extra Note */}
+        {/* Note */}
         <motion.p
-          className="mt-8 text-sky-700 font-medium"
+          className="mt-8 text-gray-600 font-medium"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
         >
-          📍 Walk-ins are welcome during school hours!
+          📍 Walk-ins are welcome during school hours.
         </motion.p>
 
       </div>
@@ -80,4 +73,3 @@ function VisitCTASection() {
 }
 
 export default VisitCTASection;
-

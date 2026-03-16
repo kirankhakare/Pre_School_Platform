@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PublicLayout from "../common/components/layout/PublicLayout";
-
+import ScrollToTop from "../common/ScrollToTop";
 import Home from "../common/pages/Home";
 import About from "../common/pages/About";
 import Classes from "../common/pages/Classes";
@@ -32,7 +32,7 @@ function AppRoutes() {
   return (
 
     <BrowserRouter>
-
+      <ScrollToTop />
       <Routes>
 
         {/* PUBLIC */}
