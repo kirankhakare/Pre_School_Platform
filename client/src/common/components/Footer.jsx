@@ -140,7 +140,7 @@ function Footer() {
                   <Phone size={18} className="text-[#2F4C92]" />
                 </div>
 
-                +91 9876543210
+                +91 8767192113
 
               </li>
 
@@ -150,7 +150,7 @@ function Footer() {
                   <MapPin size={18} className="text-[#2F4C92]" />
                 </div>
 
-                Pune, Maharashtra, India
+                Pramanda, Lane 7, Yashoda Nagar No. 2, Amravati, 444606
 
               </li>
 
