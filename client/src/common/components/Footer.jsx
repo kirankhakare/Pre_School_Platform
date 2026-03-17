@@ -62,7 +62,7 @@ function Footer() {
 
             <ul className="space-y-3">
 
-              {["Home", "About", "Classes", "Gallery", "Contact"].map((item) => (
+              {["Home", "About", "Classes", "Common-Gallery", "Contact"].map((item) => (
 
                 <li key={item}>
 
@@ -130,7 +130,7 @@ function Footer() {
                   <Mail size={18} className="text-[#2F4C92]" />
                 </div>
 
-                info@octawisdom.com
+                octawisdom2026@gmail.com
 
               </li>
 
