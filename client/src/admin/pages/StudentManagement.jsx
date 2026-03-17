@@ -1,18 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Eye, Edit, Trash2, Plus } from "lucide-react";
+import axios from "axios";
 
 function StudentManagement() {
 
-  const [students, setStudents] = useState([
-    {
-      id: 1,
-      name: "Aarav Sharma",
-      className: "Nursery",
-      parent: "Raj Sharma",
-      phone: "9876543210",
-      document: "birth_certificate.pdf"
-    }
-  ]);
+  const [students, setStudents] = useState([]);
+  const [editId, setEditId] = useState(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -22,52 +15,85 @@ function StudentManagement() {
     document: ""
   });
 
-  const [editIndex, setEditIndex] = useState(null);
+  const API = "http://localhost:5000/api/students";
 
+  // Fetch Students
+  const fetchStudents = async () => {
+    try {
+      const res = await axios.get(`${API}/all`);
+      setStudents(res.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  // Handle Input
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Handle File
   const handleFile = (e) => {
     setForm({ ...form, document: e.target.files[0].name });
   };
 
-  // Add or Update Student
-  const handleSubmit = () => {
+  // Add or Update
+  const handleSubmit = async () => {
 
     if (!form.name || !form.className) return;
 
-    if (editIndex !== null) {
-      const updated = [...students];
-      updated[editIndex] = { ...form, id: students[editIndex].id };
-      setStudents(updated);
-      setEditIndex(null);
-    } else {
-      setStudents([...students, { ...form, id: Date.now() }]);
+    try {
+
+      if (editId) {
+
+        await axios.put(`${API}/update/${editId}`, form);
+
+      } else {
+
+        await axios.post(`${API}/create`, form);
+
+      }
+
+      fetchStudents();
+
+      setForm({
+        name: "",
+        className: "",
+        parent: "",
+        phone: "",
+        document: ""
+      });
+
+      setEditId(null);
+
+    } catch (error) {
+      console.error(error);
     }
-
-    setForm({
-      name: "",
-      className: "",
-      parent: "",
-      phone: "",
-      document: ""
-    });
   };
 
-  // Delete Student
-  const deleteStudent = (index) => {
-    const updated = students.filter((_, i) => i !== index);
-    setStudents(updated);
+  // Delete
+  const deleteStudent = async (id) => {
+    try {
+
+      await axios.delete(`${API}/delete/${id}`);
+      fetchStudents();
+
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  // Edit Student
-  const editStudent = (index) => {
-    setForm(students[index]);
-    setEditIndex(index);
+  // Edit
+  const editStudent = (student) => {
+    setForm(student);
+    setEditId(student._id);
   };
 
-  // View Student
+  // View
   const viewStudent = (student) => {
     alert(`
 Student Name: ${student.name}
@@ -86,7 +112,7 @@ Document: ${student.document}
         Student Management
       </h1>
 
-      {/* Add Student */}
+      {/* Form */}
 
       <div className="bg-white shadow rounded-xl p-4 mb-6 flex gap-3 flex-wrap">
 
@@ -141,12 +167,12 @@ Document: ${student.document}
           className="bg-sky-700 text-white px-4 py-2 rounded flex items-center gap-2"
         >
           <Plus size={16} />
-          {editIndex !== null ? "Update" : "Add"}
+          {editId ? "Update" : "Add"}
         </button>
 
       </div>
 
-      {/* Student Table */}
+      {/* Table */}
 
       <div className="bg-white shadow rounded-xl p-4">
 
@@ -165,9 +191,9 @@ Document: ${student.document}
 
           <tbody>
 
-            {students.map((s, index) => (
+            {students.map((s) => (
 
-              <tr key={s.id} className="border-t text-center">
+              <tr key={s._id} className="border-t text-center">
 
                 <td className="p-3">{s.name}</td>
                 <td>{s.className}</td>
@@ -185,14 +211,14 @@ Document: ${student.document}
                   </button>
 
                   <button
-                    onClick={() => editStudent(index)}
+                    onClick={() => editStudent(s)}
                     className="text-green-600"
                   >
                     <Edit size={18} />
                   </button>
 
                   <button
-                    onClick={() => deleteStudent(index)}
+                    onClick={() => deleteStudent(s._id)}
                     className="text-red-600"
                   >
                     <Trash2 size={18} />

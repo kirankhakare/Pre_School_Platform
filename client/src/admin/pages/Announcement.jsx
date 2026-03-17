@@ -1,46 +1,96 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Plus, Trash2 } from "lucide-react";
 
 function AnnouncementManagement() {
 
+  const API = "http://localhost:5000/api/announcements";
+
   const [announcements, setAnnouncements] = useState([]);
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
+  const [target, setTarget] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [form, setForm] = useState({
-    title: "",
-    message: "",
-    target: ""
-  });
+  // Fetch announcements
+  const fetchAnnouncements = async () => {
+    try {
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+      const res = await axios.get(`${API}/all`);
 
-  // Add Announcement
-  const addAnnouncement = () => {
+      console.log("Fetched Data:", res.data);
 
-    if (!form.title || !form.message || !form.target) return;
-
-    setAnnouncements([
-      ...announcements,
-      {
-        id: Date.now(),
-        ...form,
-        date: new Date().toLocaleDateString()
+      if (res.data && res.data.data) {
+        setAnnouncements(res.data.data);
       }
-    ]);
 
-    setForm({
-      title: "",
-      message: "",
-      target: ""
-    });
+    } catch (error) {
+      console.error("Fetch Error:", error);
+    }
   };
 
-  // Delete Announcement
-  const deleteAnnouncement = (index) => {
-    const updated = announcements.filter((_, i) => i !== index);
-    setAnnouncements(updated);
+  useEffect(() => {
+    fetchAnnouncements();
+  }, []);
+
+
+  // Add announcement
+  const addAnnouncement = async () => {
+
+    if (!title || !message || !target) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    try {
+
+      setLoading(true);
+
+      const res = await axios.post(`${API}/create`, {
+        title,
+        message,
+        target
+      });
+
+      console.log("Created:", res.data);
+
+      if (res.data && res.data.data) {
+
+        // Add new announcement to table instantly
+        setAnnouncements([res.data.data, ...announcements]);
+
+        setTitle("");
+        setMessage("");
+        setTarget("");
+
+      }
+
+    } catch (error) {
+      console.error("Create Error:", error);
+    }
+
+    setLoading(false);
   };
+
+
+  // Delete announcement
+  const deleteAnnouncement = async (id) => {
+
+    if (!window.confirm("Delete this announcement?")) return;
+
+    try {
+
+      await axios.delete(`${API}/delete/${id}`);
+
+      setAnnouncements(
+        announcements.filter((a) => a._id !== id)
+      );
+
+    } catch (error) {
+      console.error("Delete Error:", error);
+    }
+  };
+
 
   return (
 
@@ -50,32 +100,30 @@ function AnnouncementManagement() {
         Announcement Management
       </h1>
 
-      {/* Announcement Form */}
+
+      {/* FORM */}
 
       <div className="bg-white shadow rounded-xl p-4 mb-6 flex gap-3 flex-wrap">
 
         <input
           type="text"
-          name="title"
           placeholder="Announcement Title"
-          value={form.title}
-          onChange={handleChange}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="border p-2 rounded w-48"
         />
 
         <input
           type="text"
-          name="message"
           placeholder="Announcement Message"
-          value={form.message}
-          onChange={handleChange}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           className="border p-2 rounded w-72"
         />
 
         <select
-          name="target"
-          value={form.target}
-          onChange={handleChange}
+          value={target}
+          onChange={(e) => setTarget(e.target.value)}
           className="border p-2 rounded"
         >
           <option value="">Send To</option>
@@ -89,15 +137,17 @@ function AnnouncementManagement() {
 
         <button
           onClick={addAnnouncement}
+          disabled={loading}
           className="bg-sky-700 text-white px-4 py-2 rounded flex items-center gap-2"
         >
           <Plus size={16} />
-          Send
+          {loading ? "Sending..." : "Send"}
         </button>
 
       </div>
 
-      {/* Announcement Table */}
+
+      {/* TABLE */}
 
       <div className="bg-white shadow rounded-xl p-4">
 
@@ -107,7 +157,7 @@ function AnnouncementManagement() {
             <tr>
               <th className="p-3">Title</th>
               <th className="p-3">Message</th>
-              <th className="p-3">Send To</th>
+              <th className="p-3">Target</th>
               <th className="p-3">Date</th>
               <th className="p-3">Action</th>
             </tr>
@@ -115,35 +165,48 @@ function AnnouncementManagement() {
 
           <tbody>
 
-            {announcements.length === 0 && (
+            {announcements.length === 0 ? (
+
               <tr>
                 <td colSpan="5" className="text-center p-4">
                   No announcements yet
                 </td>
               </tr>
+
+            ) : (
+
+              announcements.map((a) => (
+
+                <tr key={a._id} className="border-t text-center">
+
+                  <td className="p-3">{a.title}</td>
+
+                  <td>{a.message}</td>
+
+                  <td>{a.target}</td>
+
+                  <td>
+                    {a.createdAt
+                      ? new Date(a.createdAt).toLocaleDateString()
+                      : ""}
+                  </td>
+
+                  <td>
+
+                    <button
+                      onClick={() => deleteAnnouncement(a._id)}
+                      className="text-red-600"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              ))
+
             )}
-
-            {announcements.map((a, index) => (
-
-              <tr key={a.id} className="border-t text-center">
-
-                <td className="p-3">{a.title}</td>
-                <td>{a.message}</td>
-                <td>{a.target}</td>
-                <td>{a.date}</td>
-
-                <td>
-                  <button
-                    onClick={() => deleteAnnouncement(index)}
-                    className="text-red-600"
-                  >
-                    <Trash2 size={18} />
-                  </button>
-                </td>
-
-              </tr>
-
-            ))}
 
           </tbody>
 
@@ -152,6 +215,7 @@ function AnnouncementManagement() {
       </div>
 
     </div>
+
   );
 }
 

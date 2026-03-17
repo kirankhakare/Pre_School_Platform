@@ -1,12 +1,25 @@
 import mongoose from "mongoose";
 
 const announcementSchema = new mongoose.Schema(
-  {
-    title: String,
-    message: String,
-    target: String
+{
+  title: {
+    type: String,
+    required: true
   },
-  { timestamps: true }
+
+  message: {
+    type: String,
+    required: true
+  },
+
+  target: {
+    type: String,
+    required: true
+  }
+},
+{
+  timestamps: true
+}
 );
 
 export default mongoose.model("Announcement", announcementSchema);

@@ -1,21 +1,92 @@
 import React, { useState } from "react";
-import { Mail, Lock, Users, MapPin } from "lucide-react"; // Added MapPin
-import { Link } from "react-router-dom";
+import { Mail, Lock, Users, MapPin } from "lucide-react";
+import axios from "axios";
 
 const RegisterForms = () => {
+
   const [isLogin, setIsLogin] = useState(true);
 
+  const [form, setForm] = useState({
+    name: "",
+    address: "",
+    role: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+
+  const API = "http://localhost:5000/api/auth";
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      if (isLogin) {
+
+        const res = await axios.post(
+          `${API}/login`,
+          {
+            email: form.email,
+            password: form.password,
+            role: form.role
+          },
+          { withCredentials: true }
+        );
+
+        alert("Login Successful");
+        console.log(res.data);
+
+      } else {
+
+        if (form.password !== form.confirmPassword) {
+          alert("Passwords do not match");
+          return;
+        }
+
+        const res = await axios.post(
+          `${API}/register`,
+          {
+            name: form.name,
+            email: form.email,
+            password: form.password,
+            role: form.role
+          },
+          { withCredentials: true }
+        );
+
+        alert("Registration Successful");
+        console.log(res.data);
+
+        setIsLogin(true);
+      }
+
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
+    }
+  };
+
   return (
+
     <section className="py-12 px-6">
+
       <div className="max-w-4xl mx-auto bg-white rounded-[3rem] p-8 shadow-xl">
+
         {/* Switch Buttons */}
+
         <div className="flex justify-center mb-8 gap-4">
+
           <button
             onClick={() => setIsLogin(true)}
-            className={`px-8 py-3 rounded-full font-bold transition ${
+            className={`px-8 py-3 rounded-full font-bold ${
               isLogin
                 ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                : "bg-gray-200 text-gray-600"
+                : "bg-gray-200"
             }`}
           >
             Login
@@ -23,128 +94,191 @@ const RegisterForms = () => {
 
           <button
             onClick={() => setIsLogin(false)}
-            className={`px-8 py-3 rounded-full font-bold transition ${
+            className={`px-8 py-3 rounded-full font-bold ${
               !isLogin
                 ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                : "bg-gray-200 text-gray-600"
+                : "bg-gray-200"
             }`}
           >
             Register
           </button>
+
         </div>
 
-        <form className="space-y-6">
-          {/* Register Name Field */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+
+          {/* Name */}
+
           {!isLogin && (
+
             <div>
+
               <label className="font-bold flex gap-2 mb-2">
                 <Users size={18} /> Full Name
               </label>
+
               <input
                 type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
                 placeholder="Enter your name"
-                className="w-full p-4 rounded-2xl border-2 border-green-200"
+                className="w-full p-4 rounded-2xl border"
               />
+
             </div>
+
           )}
 
-          {/* Address Field */}
+          {/* Address */}
+
           {!isLogin && (
+
             <div>
+
               <label className="font-bold flex gap-2 mb-2">
                 <MapPin size={18} /> Address
               </label>
+
               <input
                 type="text"
-                placeholder="Enter your address"
-                className="w-full p-4 rounded-2xl border-2 border-gray-300"
+                name="address"
+                value={form.address}
+                onChange={handleChange}
+                placeholder="Enter address"
+                className="w-full p-4 rounded-2xl border"
               />
+
             </div>
+
           )}
 
-          {/* Role Selection */}
+          {/* Role */}
+
           <div>
-            <label className="font-bold text-sky-900 flex gap-2 mb-2">
-              <Users size={18} /> Select Role
+
+            <label className="font-bold flex gap-2 mb-2">
+              <Users size={18} /> Role
             </label>
-            <select className="w-full p-4 rounded-2xl border-2 border-pink-200">
-              <option>Choose Role</option>
-              <option>Admin</option>
-              <option>Teacher</option>
-              <option>Parent</option>
+
+            <select
+              name="role"
+              value={form.role}
+              onChange={handleChange}
+              className="w-full p-4 rounded-2xl border"
+            >
+
+              <option value="">Choose Role</option>
+              <option value="admin">Admin</option>
+              <option value="teacher">Teacher</option>
+              <option value="parent">Parent</option>
+
             </select>
+
           </div>
 
           {/* Email */}
+
           <div>
+
             <label className="font-bold flex gap-2 mb-2">
               <Mail size={18} /> Email
             </label>
+
             <input
               type="email"
-              placeholder="Enter your email"
-              className="w-full p-4 rounded-2xl border-2 border-blue-200"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Enter email"
+              className="w-full p-4 rounded-2xl border"
             />
+
           </div>
 
           {/* Password */}
+
           <div>
+
             <label className="font-bold flex gap-2 mb-2">
               <Lock size={18} /> Password
             </label>
+
             <input
               type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
               placeholder="Enter password"
-              className="w-full p-4 rounded-2xl border-2 border-purple-200"
+              className="w-full p-4 rounded-2xl border"
             />
+
           </div>
 
-          {/* Register Confirm Password */}
+          {/* Confirm Password */}
+
           {!isLogin && (
+
             <div>
+
               <label className="font-bold flex gap-2 mb-2">
                 <Lock size={18} /> Confirm Password
               </label>
+
               <input
                 type="password"
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={handleChange}
                 placeholder="Confirm password"
-                className="w-full p-4 rounded-2xl border-2 border-orange-200"
+                className="w-full p-4 rounded-2xl border"
               />
+
             </div>
+
           )}
 
-          {/* Submit Button */}
-          <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl py-4 rounded-2xl">
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 rounded-2xl"
+          >
             {isLogin ? "Login to Portal" : "Create Account"}
           </button>
+
         </form>
 
-        {/* Conditional Link Below Form */}
+        {/* Toggle text */}
+
         <div className="text-center mt-6">
+
           {isLogin ? (
-            <p className="text-sm text-sky-700">
+            <p>
               Don't have an account?{" "}
               <button
                 onClick={() => setIsLogin(false)}
-                className="font-bold text-blue-500 hover:underline"
+                className="text-blue-500 font-bold"
               >
                 Register here
               </button>
             </p>
           ) : (
-            <p className="text-sm text-sky-700">
+            <p>
               Already have an account?{" "}
               <button
                 onClick={() => setIsLogin(true)}
-                className="font-bold text-blue-500 hover:underline"
+                className="text-blue-500 font-bold"
               >
                 Login here
               </button>
             </p>
           )}
+
         </div>
+
       </div>
+
     </section>
+
   );
 };
 
