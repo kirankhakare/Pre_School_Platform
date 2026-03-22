@@ -5,6 +5,29 @@ import logo from "/logo.png";
 function Footer() {
 
   const currentYear = new Date().getFullYear();
+ 
+  const quickLinks = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Classes", path: "/classes" },
+  { name: "Gallery", path: "/common-gallery" },
+  { name: "Contact", path: "/contact" }
+];
+
+  const socialLinks = [
+  {
+    icon: Instagram,
+    url: "https://www.instagram.com/octawisdom2026/"
+  },
+  {
+    icon: Facebook,
+    url: "https://www.facebook.com/share/1J1bknVzhh/"
+  },
+  {
+    icon: Linkedin,
+    url: "https://www.linkedin.com/in/your-profile-link"
+  }
+];
 
   return (
 
@@ -33,58 +56,50 @@ function Footer() {
 
             {/* SOCIAL */}
 
-            <div className="flex gap-3 pt-2">
-
-              {[Facebook, Instagram, Linkedin].map((Icon, idx) => (
-
-                <a
-                  key={idx}
-                  href="#"
-                  className="p-2 rounded-lg bg-gray-100 text-[#2F4C92]
-                  hover:bg-[#2F4C92] hover:text-white transition shadow-sm"
-                >
-                  <Icon size={20} />
-                </a>
-
-              ))}
-
-            </div>
+           <div className="flex gap-3 pt-2">
+  {socialLinks.map((item, idx) => {
+    const Icon = item.icon;
+    return (
+      <a
+        key={idx}
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-lg bg-gray-100 text-[#2F4C92]
+        hover:bg-[#2F4C92] hover:text-white transition shadow-sm"
+      >
+        <Icon size={20} />
+      </a>
+    );
+  })}
+</div>
 
           </div>
 
           {/* QUICK LINKS */}
+<div>
+  <h3 className="text-lg font-bold text-[#2F4C92] mb-5 border-b-2 border-[#E87D1E] w-fit">
+    Quick Links
+  </h3>
 
-          <div>
+  <ul className="space-y-3">
+    {quickLinks.map((item, index) => (
+      <li key={index}>
+        <Link
+          to={item.path}
+          className="text-[16px] font-medium text-gray-700 
+          hover:text-[#E87D1E] transition-all duration-300 
+          flex items-center gap-2 group"
+        >
+          <span className="h-1.5 w-1.5 bg-[#E87D1E] rounded-full 
+          group-hover:scale-125 transition-transform"></span>
 
-            <h3 className="text-lg font-bold text-[#2F4C92] mb-5 border-b-2 border-[#E87D1E] w-fit">
-              Quick Links
-            </h3>
-
-            <ul className="space-y-3">
-
-              {["Home", "About", "Classes", "Common-Gallery", "Contact"].map((item) => (
-
-                <li key={item}>
-
-                  <Link
-                    to={`/${item.toLowerCase()}`}
-                    className="text-[17px] font-semibold hover:text-[#E87D1E]
-                    transition-colors flex items-center gap-2"
-                  >
-
-                    <span className="h-1.5 w-1.5 bg-[#E87D1E] rounded-full"></span>
-
-                    {item}
-
-                  </Link>
-
-                </li>
-
-              ))}
-
-            </ul>
-
-          </div>
+          {item.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
           {/* CLASSES */}
 

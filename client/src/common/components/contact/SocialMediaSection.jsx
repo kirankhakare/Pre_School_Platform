@@ -9,14 +9,14 @@ function SocialMediaSection() {
       description: "See daily classroom fun & activities",
       icon: Instagram,
       emoji: "📸",
-      link: "https://instagram.com"
+      link: "https://www.instagram.com/octawisdom2026/"
     },
     {
       name: "Facebook",
       description: "Stay updated with school events",
       icon: Facebook,
       emoji: "👍",
-      link: "https://facebook.com"
+      link: "https://www.facebook.com/share/1J1bknVzhh/"
     },
     {
       name: "WhatsApp",

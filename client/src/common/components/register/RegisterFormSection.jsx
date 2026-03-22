@@ -5,6 +5,7 @@ import axios from "axios";
 const RegisterForms = () => {
 
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
@@ -21,14 +22,40 @@ const RegisterForms = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Submit form
+  const resetForm = () => {
+    setForm({
+      name: "",
+      address: "",
+      role: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // ✅ Validation
+    if (!form.email || !form.password || !form.role) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    if (!isLogin && (!form.name || !form.address)) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    if (!isLogin && form.password !== form.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
     try {
+      setLoading(true);
 
       if (isLogin) {
-
         const res = await axios.post(
           `${API}/login`,
           {
@@ -43,19 +70,14 @@ const RegisterForms = () => {
         console.log(res.data);
 
       } else {
-
-        if (form.password !== form.confirmPassword) {
-          alert("Passwords do not match");
-          return;
-        }
-
         const res = await axios.post(
           `${API}/register`,
           {
             name: form.name,
             email: form.email,
             password: form.password,
-            role: form.role
+            role: form.role,
+            address: form.address
           },
           { withCredentials: true }
         );
@@ -64,29 +86,29 @@ const RegisterForms = () => {
         console.log(res.data);
 
         setIsLogin(true);
+        resetForm();
       }
 
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
+    <section className="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-blue-50 to-purple-100">
 
-    <section className="py-12 px-6">
-
-      <div className="max-w-4xl mx-auto bg-white rounded-[3rem] p-8 shadow-xl">
+      <div className="w-full max-w-lg bg-white rounded-3xl p-6 sm:p-10 shadow-2xl">
 
         {/* Switch Buttons */}
-
-        <div className="flex justify-center mb-8 gap-4">
-
+        <div className="flex justify-center mb-8 gap-3">
           <button
             onClick={() => setIsLogin(true)}
-            className={`px-8 py-3 rounded-full font-bold ${
+            className={`flex-1 py-2 sm:py-3 rounded-full font-semibold transition ${
               isLogin
-                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                : "bg-gray-200"
+                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md"
+                : "bg-gray-200 hover:bg-gray-300"
             }`}
           >
             Login
@@ -94,171 +116,142 @@ const RegisterForms = () => {
 
           <button
             onClick={() => setIsLogin(false)}
-            className={`px-8 py-3 rounded-full font-bold ${
+            className={`flex-1 py-2 sm:py-3 rounded-full font-semibold transition ${
               !isLogin
-                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                : "bg-gray-200"
+                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md"
+                : "bg-gray-200 hover:bg-gray-300"
             }`}
           >
             Register
           </button>
-
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
 
           {/* Name */}
-
           {!isLogin && (
-
             <div>
-
-              <label className="font-bold flex gap-2 mb-2">
-                <Users size={18} /> Full Name
+              <label className="font-semibold flex gap-2 mb-1 text-sm">
+                <Users size={16} /> Full Name
               </label>
-
               <input
                 type="text"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Enter your name"
-                className="w-full p-4 rounded-2xl border"
+                className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
               />
-
             </div>
-
           )}
 
           {/* Address */}
-
           {!isLogin && (
-
             <div>
-
-              <label className="font-bold flex gap-2 mb-2">
-                <MapPin size={18} /> Address
+              <label className="font-semibold flex gap-2 mb-1 text-sm">
+                <MapPin size={16} /> Address
               </label>
-
               <input
                 type="text"
                 name="address"
                 value={form.address}
                 onChange={handleChange}
                 placeholder="Enter address"
-                className="w-full p-4 rounded-2xl border"
+                className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
               />
-
             </div>
-
           )}
 
           {/* Role */}
-
           <div>
-
-            <label className="font-bold flex gap-2 mb-2">
-              <Users size={18} /> Role
+            <label className="font-semibold flex gap-2 mb-1 text-sm">
+              <Users size={16} /> Role
             </label>
-
             <select
               name="role"
               value={form.role}
               onChange={handleChange}
-              className="w-full p-4 rounded-2xl border"
+              className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
             >
-
               <option value="">Choose Role</option>
               <option value="admin">Admin</option>
               <option value="teacher">Teacher</option>
               <option value="parent">Parent</option>
-
             </select>
-
           </div>
 
           {/* Email */}
-
           <div>
-
-            <label className="font-bold flex gap-2 mb-2">
-              <Mail size={18} /> Email
+            <label className="font-semibold flex gap-2 mb-1 text-sm">
+              <Mail size={16} /> Email
             </label>
-
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
               placeholder="Enter email"
-              className="w-full p-4 rounded-2xl border"
+              className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
             />
-
           </div>
 
           {/* Password */}
-
           <div>
-
-            <label className="font-bold flex gap-2 mb-2">
-              <Lock size={18} /> Password
+            <label className="font-semibold flex gap-2 mb-1 text-sm">
+              <Lock size={16} /> Password
             </label>
-
             <input
               type="password"
               name="password"
               value={form.password}
               onChange={handleChange}
               placeholder="Enter password"
-              className="w-full p-4 rounded-2xl border"
+              className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
             />
-
           </div>
 
           {/* Confirm Password */}
-
           {!isLogin && (
-
             <div>
-
-              <label className="font-bold flex gap-2 mb-2">
-                <Lock size={18} /> Confirm Password
+              <label className="font-semibold flex gap-2 mb-1 text-sm">
+                <Lock size={16} /> Confirm Password
               </label>
-
               <input
                 type="password"
                 name="confirmPassword"
                 value={form.confirmPassword}
                 onChange={handleChange}
                 placeholder="Confirm password"
-                className="w-full p-4 rounded-2xl border"
+                className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
               />
-
             </div>
-
           )}
 
+          {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 rounded-2xl"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition shadow-md disabled:opacity-60"
           >
-            {isLogin ? "Login to Portal" : "Create Account"}
+            {loading
+              ? "Please wait..."
+              : isLogin
+              ? "Login to Portal"
+              : "Create Account"}
           </button>
 
         </form>
 
-        {/* Toggle text */}
-
-        <div className="text-center mt-6">
-
+        {/* Toggle */}
+        <div className="text-center mt-5 text-sm">
           {isLogin ? (
             <p>
               Don't have an account?{" "}
               <button
                 onClick={() => setIsLogin(false)}
-                className="text-blue-500 font-bold"
+                className="text-blue-500 font-semibold"
               >
-                Register here
+                Register
               </button>
             </p>
           ) : (
@@ -266,19 +259,16 @@ const RegisterForms = () => {
               Already have an account?{" "}
               <button
                 onClick={() => setIsLogin(true)}
-                className="text-blue-500 font-bold"
+                className="text-blue-500 font-semibold"
               >
-                Login here
+                Login
               </button>
             </p>
           )}
-
         </div>
 
       </div>
-
     </section>
-
   );
 };
 

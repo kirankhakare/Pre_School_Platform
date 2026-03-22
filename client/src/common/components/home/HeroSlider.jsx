@@ -40,7 +40,7 @@ function HeroSlider() {
       subtitle:
         "A nurturing environment where children learn through play and discovery.",
       button: "View Facilities →",
-      link: "/gallery",
+      link: "/common-gallery",
     },
   ];
 
