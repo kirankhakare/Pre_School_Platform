@@ -10,6 +10,7 @@ import Contact from "../common/pages/Contact";
 import PrivacyPolicy from "../common/pages/PrivacyPolicy";
 import Register from "../common/pages/Register";
 import Gallery from "../common/pages/Gallery";
+import Career from "../common/pages/Career";
 
 import AdminLogin from "../admin/pages/AdminLogin";
 import AdminDashboard from "../admin/pages/AdminDashboard";
@@ -51,6 +52,7 @@ function AppRoutes() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms/>} />
           <Route path="/common-gallery" element={<Gallery />} />
+          <Route path="/career" element={<Career/>} />
         </Route>
 
         {/* ADMIN LOGIN */}

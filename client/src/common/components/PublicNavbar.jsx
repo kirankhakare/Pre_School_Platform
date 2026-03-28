@@ -57,6 +57,7 @@ function PublicNavbar() {
           <NavItem to="/classes" label="Classes" location={location}/>
           <NavItem to="/admission" label="Admission" location={location}/>
           <NavItem to="/common-gallery" label="Gallery" location={location}/>
+          <NavItem to="/career" label="Career" location={location}/>
           <NavItem to="/contact" label="Contact" location={location}/>
 
           <Link
@@ -96,6 +97,7 @@ function PublicNavbar() {
           <MobileItem to="/classes" label="Classes" close={setMenuOpen}/>
           <MobileItem to="/admission" label="Admission" close={setMenuOpen}/>
           <MobileItem to="/common-gallery" label="Gallery" close={setMenuOpen}/>
+          <MobileItem to="/career" label="Career" close={setMenuOpen}/>
           <MobileItem to="/contact" label="Contact" close={setMenuOpen}/>
 
           <Link
