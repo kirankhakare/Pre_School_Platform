@@ -41,7 +41,7 @@ function AppRoutes() {
 
       <Routes>
 
-        {/* PUBLIC */}
+        {/* PUBLIC..*/}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
