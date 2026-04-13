@@ -184,7 +184,7 @@ function Terms() {
                   <MapPin size={16} /> Pramanda, Lane 7, Yashoda Nagar No. 2, Amravati, 444606
                 </p>
                 <p className="flex items-center gap-2">
-                  <Phone size={16} /> +91 8767192113
+                  <Phone size={16} /> +91 9130037728
                 </p>
                 <p className="flex items-center gap-2">
                   <Mail size={16} /> octawisdom2026@gmail.com

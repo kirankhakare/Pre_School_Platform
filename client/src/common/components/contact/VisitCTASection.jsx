@@ -48,7 +48,7 @@ function VisitCTASection() {
 
           {/* Call Button */}
           <a
-            href="tel:+918767192113"
+            href="tel:+919130037728"
             className="flex items-center justify-center gap-2 border-2 border-[#E87D1E] text-[#E87D1E] hover:bg-[#E87D1E] hover:text-white font-semibold px-6 py-3 rounded-xl transition"
           >
             <Phone size={20} />

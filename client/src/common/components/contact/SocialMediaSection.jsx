@@ -23,7 +23,7 @@ function SocialMediaSection() {
       description: "Chat with us instantly",
       icon: MessageCircle,
       emoji: "💬",
-      link: "https://wa.me/918767192113"
+      link: "https://wa.me/919130037728"
     }
   ];
 

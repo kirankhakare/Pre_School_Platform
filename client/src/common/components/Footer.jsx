@@ -155,7 +155,7 @@ function Footer() {
                   <Phone size={18} className="text-[#2F4C92]" />
                 </div>
 
-                +91 8767192113
+                9130037728
 
               </li>
 

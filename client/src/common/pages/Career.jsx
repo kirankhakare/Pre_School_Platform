@@ -62,7 +62,7 @@ const Careers = () => {
           </p>
 
           <p className="mt-2 text-gray-700">
-            📞 Contact: 8767192113 / 7219792131
+            📞 Contact: 9130037728
           </p>
 
           <button className="mt-5 bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition">

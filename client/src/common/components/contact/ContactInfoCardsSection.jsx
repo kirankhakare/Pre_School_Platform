@@ -6,7 +6,7 @@ function ContactInfoCardsSection() {
   const contactCards = [
     {
       title: "Call Us",
-      value: "+91 8767192113",
+      value: "9130037728",
       subtitle: "Mon–Sat during school hours",
       icon: Phone
     },
@@ -24,7 +24,7 @@ function ContactInfoCardsSection() {
     },
     {
       title: "WhatsApp",
-      value: "+91 8767192113",
+      value: "9130037728",
       subtitle: "Quick support & updates",
       icon: MessageCircle
     }
